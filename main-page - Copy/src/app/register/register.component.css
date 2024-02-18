@@ -1,17 +1,36 @@
+
 .container{
-    padding: 20px;
+    padding: 10px;
 }
 .btn-brown {
     background-color: #333; 
     color: #fff; 
     transition: background-color 0.3s ease; 
+    width: 100px;
+    height: 50px;
   }
   
   .btn-brown:hover {
-    background-color: #333; 
+    background-color: #f5f2c8; 
+    color: #333;
+    font-weight: bold;
   }
   .error-message {
     color: red;
   }
-  
-  
+  .match{
+    color: red;
+  }
+  .signIN {
+    color: #333;
+    font-weight: bold;
+  }
+  .upload {
+    color: #333;
+    font-weight: 900 ;
+  }
+  .new {
+    color: #333;
+    font-weight: 900 ;
+    font-size: larger;
+  }
