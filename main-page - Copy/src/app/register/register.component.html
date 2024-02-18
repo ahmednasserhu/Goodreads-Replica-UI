@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row justify-content-end">
+      <div class="col-lg-4">
+        <form >
+          <div class="mb-2">
+            <label for="inputName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="inputName" matInput placeholder="First Name" [formControl]="firstName">
+            <mat-error class="error-message" *ngIf="getErrorMessage(firstName, 'firstName')">
+                {{ getErrorMessage(firstName, 'firstName') }}
+              </mat-error>
+          </div>
+          <div class="mb-2">
+            <label for="inputName" class="form-label">Last name</label>
+            
+            <input type="text" class="form-control" id="inputName" matInput placeholder="Last Name" [formControl]="lastName">
+            <mat-error class="error-message" *ngIf="getErrorMessage(lastName, 'lastName')">
+              {{ getErrorMessage(lastName, 'lastName') }}
+            </mat-error>
+          </div>
+          <div class="mb-2">
+            <mat-label>Enter your email</mat-label>
+            
+            <input type="email" class="form-control" id="inputEmail" mmatInput placeholder="Email" [formControl]="email">
+            <mat-error class="error-message" *ngIf="getErrorMessage(email, 'email')">
+              {{ getErrorMessage(email, 'email') }}
+            </mat-error>
+          </div>
+          <div class="mb-2">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword" matInput placeholder="Password" [formControl]="password">
+            <mat-error class="error-message" *ngIf="password.invalid && (password.dirty || password.touched)">
+              {{ getErrorMessage(password, 'password') }}
+            </mat-error>  
+          </div>
+          <div class="mb-2">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" matInput placeholder="ConfirmPassword" [formControl]="confirmPassword">
+            <mat-error class="error-message" *ngIf="getErrorMessage(confirmPassword, 'confirmPassword')">
+              {{ getErrorMessage(confirmPassword, 'confirmPassword') }}
+            </mat-error>  
+          </div>
+          
+        
+        
+          <div class="mb-2">
+            <label for="inputImage" class="form-label">Upload Your Image</label>
+            <input type="file" class="form-control" id="inputImage">
+          </div>
+          <div class="mb-2 text-center"> 
+            <button type="submit" class="btn btn-brown">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
