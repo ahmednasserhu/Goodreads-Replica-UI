@@ -7,10 +7,11 @@ import { RegisterComponent } from './register/register.component'
 import { LoginComponent } from './login/login.component';
 import { FormErrorMsgComponent } from './form-error-msg/form-error-msg.component';
 import { NavUserComponent } from './nav-user/nav-user.component';
+import { ReadComponent } from './read/read.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, CommonModule,RegisterComponent, LoginComponent,FormErrorMsgComponent, NavUserComponent],
+  imports: [ReadComponent, RouterOutlet, HeaderComponent, CommonModule,RegisterComponent, LoginComponent,FormErrorMsgComponent, NavUserComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
