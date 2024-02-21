@@ -1,12 +1,12 @@
 .form-background {
-  background-color: #f7f7d3;
+  background-color: #f4f1ea;
   background-size: cover;
   background-position: center;
   padding: 20px ;
 }
 
 .btn-brown {
-    background-color: #977864; 
+    background-color: #372213; 
     color: #fff; 
     transition: background-color 0.3s ease; 
     width: 100px;
@@ -15,8 +15,8 @@
   }
   
   .btn-brown:hover {
-    background-color: #f7f7d3; 
-    color: #977864;
+    background-color: #f4f1ea; 
+    color: #372213;
     font-weight: bold;
   }
   .error-message {
@@ -26,15 +26,15 @@
     color: red;
   }
   .signIN {
-    color: #977864;
+    color: #372213;
     font-weight: bold;
   }
   .upload {
-    color: #977864;
+    color: #372213;
     font-weight: 900 ;
   }
   .new {
-    color: #977864;
+    color: #372213;
     font-weight: 900 ;
     font-size: larger;
   }

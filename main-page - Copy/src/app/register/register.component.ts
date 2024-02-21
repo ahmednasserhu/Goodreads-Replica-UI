@@ -3,13 +3,14 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModu
 import { Router, RouterLink } from '@angular/router';
 import { FormErrorMsgComponent } from '../form-error-msg/form-error-msg.component';
 import { passwordMatch } from '../valid/valid.component';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, FormErrorMsgComponent],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+    selector: 'app-register',
+    standalone: true,
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css',
+    imports: [RouterLink, ReactiveFormsModule, FormErrorMsgComponent, HeaderComponent]
 })
 export class RegisterComponent {
   registerForm: FormGroup;

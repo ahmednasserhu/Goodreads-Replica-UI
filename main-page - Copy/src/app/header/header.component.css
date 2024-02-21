@@ -8,7 +8,7 @@
     height: auto;
   }
   .bg {
-    background-color: #f7f7d3;
+    background-color: #f4f1ea;
 }
 
   .navbar-title {
@@ -16,9 +16,9 @@
     font-size: 25px;
     margin-left: 100px;
     line-height: 40px;
-    color: #977864;
+    color: #372213;
   }
   .active-link{
-    color: #977864;
+    color: #372213;
     font-weight: bold;
   }
