@@ -1,18 +1,22 @@
-
-.container{
-    padding: 10px;
+.form-background {
+  background-color: #f7f7d3;
+  background-size: cover;
+  background-position: center;
+  padding: 20px ;
 }
+
 .btn-brown {
-    background-color: #333; 
+    background-color: #977864; 
     color: #fff; 
     transition: background-color 0.3s ease; 
     width: 100px;
     height: 50px;
+    margin-top: 20px;
   }
   
   .btn-brown:hover {
-    background-color: #f5f2c8; 
-    color: #333;
+    background-color: #f7f7d3; 
+    color: #977864;
     font-weight: bold;
   }
   .error-message {
@@ -22,15 +26,15 @@
     color: red;
   }
   .signIN {
-    color: #333;
+    color: #977864;
     font-weight: bold;
   }
   .upload {
-    color: #333;
+    color: #977864;
     font-weight: 900 ;
   }
   .new {
-    color: #333;
+    color: #977864;
     font-weight: 900 ;
     font-size: larger;
   }

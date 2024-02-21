@@ -1,100 +1,98 @@
 <div class="container">
   <div class="row justify-content-end">
     <div class="col-md-4">
-  <form class="mt-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="d-flex justify-content-center align-items-center">
-      <div form-floating mb-3>
-        <p class="new">New here? Create a free account!</p>
-      </div>
-    </div>
-    
-      <div class="form-floating mb-3">
-          <input type="text" formControlName="firstName" class="form-control" id="floatingName"
-              placeholder="Enter Your First Name">
+      <form class="mt-3 form-background" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="d-flex justify-content-center align-items-center">
+          <div form-floating mb-2>
+            <p class="new">New here? Create a free account!</p>
+          </div>
+        </div>
+
+        <div class="form-floating mb-1">
+          <input type="text" formControlName="firstName" class="form-control form-control-sm" id="floatingName"
+            placeholder="Enter Your First Name">
           <label for="floatingInput">First Name</label>
 
           <div [hidden]="registerForm.controls['firstName'].invalid && !registerForm.controls['firstName'].touched ">
-              <app-form-error-msg [formInput]="registerForm.controls['firstName']" [validationType]="'required'"
-                  [errorMsg]="'Required Field'"></app-form-error-msg>
+            <app-form-error-msg [formInput]="registerForm.controls['firstName']" [validationType]="'required'"
+              [errorMsg]="'Required Field'"></app-form-error-msg>
 
-              <app-form-error-msg [formInput]="registerForm.controls['firstName']" [validationType]="'pattern'"
-                  [errorMsg]="'Name must contain only letters (a-z or A-Z)'"></app-form-error-msg>
+            <app-form-error-msg [formInput]="registerForm.controls['firstName']" [validationType]="'pattern'"
+              [errorMsg]="'Name must contain only letters (a-z or A-Z)'"></app-form-error-msg>
           </div>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="text" formControlName="lastName" class="form-control" id="floatingName"
+        </div>
+        <div class="form-floating mb-1">
+          <input type="text" formControlName="lastName" class="form-control form-control-sm" id="floatingName"
             placeholder="Enter Your Last Name">
-        <label for="floatingInput">Last Name</label>
+          <label for="floatingInput">Last Name</label>
 
-        <div [hidden]="registerForm.controls['lastName'].invalid && !registerForm.controls['lastName'].touched ">
+          <div [hidden]="registerForm.controls['lastName'].invalid && !registerForm.controls['lastName'].touched ">
             <app-form-error-msg [formInput]="registerForm.controls['lastName']" [validationType]="'required'"
-                [errorMsg]="'Required Field'"></app-form-error-msg>
+              [errorMsg]="'Required Field'"></app-form-error-msg>
 
             <app-form-error-msg [formInput]="registerForm.controls['lastName']" [validationType]="'pattern'"
-                [errorMsg]="'Name must contain only letters (a-z or A-Z)'"></app-form-error-msg>
+              [errorMsg]="'Name must contain only letters (a-z or A-Z)'"></app-form-error-msg>
+          </div>
         </div>
-    </div>
-      <div class="form-floating mb-3">
-          <input type="email" formControlName="email" class="form-control" id="floatingEmail"
-              placeholder="name@example.com">
+        <div class="form-floating mb-1">
+          <input type="email" formControlName="email" class="form-control form-control-sm" id="floatingEmail"
+            placeholder="name@example.com">
           <label for="floatingInput">Email address</label>
 
           <div [hidden]="registerForm.controls['email'].invalid && !registerForm.controls['email'].touched">
-              <app-form-error-msg [formInput]="registerForm.controls['email']" [validationType]="'required'"
-                  [errorMsg]="'Required Field'"></app-form-error-msg>
+            <app-form-error-msg [formInput]="registerForm.controls['email']" [validationType]="'required'"
+              [errorMsg]="'Required Field'"></app-form-error-msg>
 
-              <app-form-error-msg [formInput]="registerForm.controls['email']" [validationType]="'pattern'"
-                  [errorMsg]="'Please enter a valid email address (e.g., yourname@example.com).'"></app-form-error-msg>
+            <app-form-error-msg [formInput]="registerForm.controls['email']" [validationType]="'pattern'"
+              [errorMsg]="'Please enter a valid email address (e.g., yourname@example.com).'"></app-form-error-msg>
           </div>
-      </div>
+        </div>
 
-      <div class="form-floating mb-3">
-          <input type="password" formControlName="password" class="form-control" id="floatingPassword"
-              placeholder="Password">
+        <div class="form-floating mb-1">
+          <input type="password" formControlName="password" class="form-control form-control-sm" id="floatingPassword"
+            placeholder="Password">
           <label for="floatingPassword">Password</label>
 
           <div [hidden]="registerForm.controls['password'].invalid && !registerForm.controls['password'].touched">
-              <app-form-error-msg [formInput]="registerForm.controls['password']" [validationType]="'required'"
-                  [errorMsg]="'Required Field'"></app-form-error-msg>
+            <app-form-error-msg [formInput]="registerForm.controls['password']" [validationType]="'required'"
+              [errorMsg]="'Required Field'"></app-form-error-msg>
 
-              <app-form-error-msg [formInput]="registerForm.controls['password']" [validationType]="'pattern'"
-                  [errorMsg]="'Password Must be: 8-32 in length, lower char, upper char, digit, special char'"></app-form-error-msg>
+            <app-form-error-msg [formInput]="registerForm.controls['password']" [validationType]="'pattern'"
+              [errorMsg]="'Password Must be: 8-32 in length, lower char, upper char, digit, special char'"></app-form-error-msg>
           </div>
-      </div>
+        </div>
 
-      <div class="form-floating mb-3">
-          <input type="password" formControlName="confirmPassword" class="form-control"
-              id="floatingPasswordConfirmation" placeholder="Password">
+        <div class="form-floating mb-1">
+          <input type="password" formControlName="confirmPassword" class="form-control form-control-sm"
+            id="floatingPasswordConfirmation" placeholder="Password">
           <label for="floatingPassword">Confirm Password</label>
 
-          <div
-              [hidden]="registerForm.controls['confirmPassword'].invalid && !registerForm.controls['confirmPassword'].touched">
-              <app-form-error-msg [formInput]="registerForm.controls['confirmPassword']" [validationType]="'required'"
-                  [errorMsg]="'Required Field'"></app-form-error-msg>
+          <div [hidden]="registerForm.controls['confirmPassword'].invalid && !registerForm.controls['confirmPassword'].touched">
+            <app-form-error-msg [formInput]="registerForm.controls['confirmPassword']" [validationType]="'required'"
+              [errorMsg]="'Required Field'"></app-form-error-msg>
 
-              <div class="alert alert-danger" role="alert" [hidden]="!registerForm.errors?.['passwordMatchError']">
-                  Password Don't Match
-              </div>
+            <div class="alert alert-danger" role="alert"
+              [hidden]="!registerForm.errors?.['passwordMatchError']">
+              Password Don't Match
+            </div>
 
           </div>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="file" class="form-control" (change)="onFileSelected($event)">
-        <label for="imageUpload" class="upload">Upload Profile Image</label>
-      </div>
-      <div class="row">
-        <div class="col text-center"> 
-          <button type="submit" class="btn btn-brown">Sign Up</button>
         </div>
-      </div>
-      <hr>
-      
-      <div class="row mt-3">
-        <div class="col text-center"> 
-          <p>Already have an account? <a routerLink="/login" class="signIN">Sign In</a></p>
+        <div class="form-floating mb-1">
+          <input type="file" class="form-control form-control-sm" (change)="onFileSelected($event)">
+          <label for="imageUpload" class="upload">Upload Profile Image</label>
         </div>
-      </div>
-  </form>
-</div>
-</div>
+        <div class="row">
+          <div class="col text-center">
+            <button type="submit" class="btn btn-brown">Sign Up</button>
+          </div>
+        </div>
+        <div class="row mt-1">
+          <div class="col text-center">
+            <p>Already have an account? <a routerLink="/login" class="signIN">Sign In</a></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
