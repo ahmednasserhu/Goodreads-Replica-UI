@@ -12,16 +12,16 @@
   
       <div>
         <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" formControlName="dob" required>
+        <input type="date" id="dob" formControlName="dateOfBirth" required>
       </div>
   
       <div>
         <label for="image">Image:</label>
-        <input type="file" id="image"  formControlName="image" (change)="onImagePicked($event)">
+        <input type="file" (change)="onImagePicked($event)">
       </div>
   
       <div>
-        <button type="submit" [disabled]="addBookForm.invalid">Submit</button>
+        <button type="submit" [disabled]="!addBookForm.valid || addBookForm.pristine">Submit</button>
       </div>
     </form>
   </div>

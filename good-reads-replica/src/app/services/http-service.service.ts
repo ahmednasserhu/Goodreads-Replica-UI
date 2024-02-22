@@ -10,7 +10,8 @@ export class HttpServiceService {
   private apiUrl = 'http://localhost:5000';
   httpOptions : any = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundaryBODBNK9vWWeDNOP1',
+      'Content-Type' : 'application/json'
     }),
   };
 
@@ -20,8 +21,8 @@ export class HttpServiceService {
     return this.http.post<any>(`${this.apiUrl}/login`, data, this.httpOptions);
   }
 
-  postBook(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/books`, data, this.httpOptions);
+  postAuthors(data: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/authors`, data, this.httpOptions);
   }
 
 }
