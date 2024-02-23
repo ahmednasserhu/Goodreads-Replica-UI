@@ -1,2 +1,7 @@
-<app-header *ngIf="!isUserRoute"></app-header>
+@if(isLogged){
+<app-nav-user></app-nav-user>
+}@else {
+<app-header></app-header>
+}
+
 <router-outlet></router-outlet>

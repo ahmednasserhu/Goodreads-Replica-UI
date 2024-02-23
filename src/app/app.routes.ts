@@ -10,36 +10,37 @@ import { WantToReadTableComponent } from './want-to-read-table/want-to-read-tabl
 import { CategoriesComponent } from './categories/categories.component';
 import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
+import { UserComponent } from './user/user.component';
 export const routes: Routes = [
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'user',
-    component: NavUserComponent,
+    component: UserComponent,
     children: [
       { path: '', redirectTo: 'all', pathMatch: 'full' },
       { path: 'all', component: AllTableComponent },
       { path: 'read', component: ReadTableComponent },
       { path: 'currently-read', component: CurrentlyReadingTableComponent },
-      { path: 'want-to-read', component: WantToReadTableComponent }
-    ]
+      { path: 'want-to-read', component: WantToReadTableComponent },
+    ],
   },
   {
     path: 'categories',
-    component: CategoriesComponent
+    component: CategoriesComponent,
   },
   {
     path: 'books',
-    component: BooksComponent
+    component: BooksComponent,
   },
   {
     path: 'authors',
-    component: AuthorsComponent
-  }
+    component: AuthorsComponent,
+  },
 ];

@@ -1,0 +1,18 @@
+.nav-link {
+  color: #372213;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.nav-link:hover {
+  font-size: large;
+  font-weight: bold;
+}
+
+.flex-column {
+  margin-top: 20px;
+  background-color: #f4f1ea;
+  width: 170px;
+  height: 500px;
+}
