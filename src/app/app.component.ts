@@ -32,5 +32,5 @@ import { WantToReadTableComponent } from './want-to-read-table/want-to-read-tabl
 })
 export class AppComponent {
   title = 'main-page';
-  isLogged: Boolean = true;
+  isLogged: Boolean = false;
 }

@@ -2,6 +2,10 @@
   background-color: #f4f1ea;
 }
 
+.active-link {
+  color: red !important;
+}
+
 .navbar-logo {
   position: absolute;
   left: 20px;
@@ -39,7 +43,7 @@
 .u-ico:hover {
   transform: scale(1.5);
 }
-.navbar-nav .nav-link.active {
+.active {
   font-weight: bold;
   color: #372213;
   size: 50px;
