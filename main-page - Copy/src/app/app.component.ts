@@ -7,11 +7,14 @@ import { RegisterComponent } from './register/register.component'
 import { LoginComponent } from './login/login.component';
 import { FormErrorMsgComponent } from './form-error-msg/form-error-msg.component';
 import { NavUserComponent } from './nav-user/nav-user.component';
-import { ReadComponent } from './read/read.component';
+import { AllTableComponent } from './all-table/all-table.component';
+import { ReadTableComponent } from './read-table/read-table.component';
+import { CurrentlyReadingTableComponent } from './currently-reading-table/currently-reading-table.component';
+import { WantToReadTableComponent } from './want-to-read-table/want-to-read-table.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ReadComponent, RouterOutlet, HeaderComponent, CommonModule,RegisterComponent, LoginComponent,FormErrorMsgComponent, NavUserComponent],
+  imports: [ AllTableComponent, ReadTableComponent, CurrentlyReadingTableComponent, WantToReadTableComponent,RouterOutlet, HeaderComponent, CommonModule,RegisterComponent, LoginComponent,FormErrorMsgComponent, NavUserComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
