@@ -1,0 +1,8 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.card-title {
+  text-transform: capitalize;
+}
