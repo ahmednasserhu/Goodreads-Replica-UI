@@ -1,9 +1,18 @@
 export interface Book {
-  name: string;
-  id: number;
-  imageUrl: string;
-  author: object;
-  category: object;
-  rating: number;
-  avgRate: number;
+  id: String;
+  name: String;
+  imageUrl: String;
+  rating: Number;
+  avgRating: Number;
+  authorId: {
+    id: String;
+    firstName: String;
+    lastName: String;
+    dateOfBirth: Date;
+    imageUrl: String;
+  };
+  categoryId: {
+    id: String;
+    name: String;
+  };
 }

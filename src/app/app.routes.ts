@@ -12,6 +12,7 @@ import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { UserComponent } from './user/user.component';
 import { BookpageComponent } from './bookpage/bookpage.component';
+import { CategoryComponent } from './category/category.component';
 export const routes: Routes = [
   {
     path: 'register',
@@ -35,6 +36,10 @@ export const routes: Routes = [
   {
     path: 'categories',
     component: CategoriesComponent,
+  },
+  {
+    path: 'categories/:categoryId',
+    component: CategoryComponent,
   },
   {
     path: 'books',
