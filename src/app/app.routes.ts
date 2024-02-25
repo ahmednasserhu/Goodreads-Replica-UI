@@ -11,6 +11,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { UserComponent } from './user/user.component';
+import { BookpageComponent } from './bookpage/bookpage.component';
 export const routes: Routes = [
   {
     path: 'register',
@@ -43,4 +44,13 @@ export const routes: Routes = [
     path: 'authors',
     component: AuthorsComponent,
   },
+  {
+    path: 'books',
+    component: BooksComponent,
+    title:'books'
+  },
+  {
+    path: 'books/:id',
+    component:BookpageComponent
+  }
 ];

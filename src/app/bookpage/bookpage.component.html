@@ -1,0 +1,38 @@
+<div class="container">
+  <img [src]="book.imageUrl" [alt]="book.name"/>
+
+  <div class="details">
+    <div class="header">
+      <span class="name">
+        {{book.name}}
+      </span>
+      <span class="author"><a routerLink="/authors/:id">{{book.authors[0]}}</a></span>
+      <span class="author">{{book.categories[0]}}</span>
+    </div>
+    <!-- <div class="rating">
+          <star-rating [starType]="'svg'" [rating]="book.rating"></star-rating>
+    </div>
+    <div class="categories">
+      @for(category of book.categoryId; track catgoryId)
+      {
+        <a  routerLink="/catefories/:id">
+          {{category.name}}
+        </a>
+      }
+    </div> -->
+    <button>
+      <div class="dropdown">
+      <input type="checkbox" id="dropdown">
+        <label class="dropdown__face" for="dropdown">
+          <div class="dropdown__text">Dropdown</div>
+          <div class="dropdown__arrow"></div>
+        </label>
+        <ul class="dropdown__items">
+          <li>read</li>
+          <li>want to read</li>
+          <li>currently reading</li>
+        </ul>
+      </div>
+    </button>
+  </div>
+</div>

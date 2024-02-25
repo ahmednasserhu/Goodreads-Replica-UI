@@ -1,1 +1,25 @@
-<p>books works!</p>
+  <div class="container">
+  @for(book of books; track book.id){
+			<div class="product-list" data-aos="fade-up">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="product-item">
+									<figure class="product-style">
+										<img [src]="book.imageUrl" alt="Books" class="product-item">
+										<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Want To Read</button>
+									</figure>
+									<figcaption>
+                      <h3>{{book.name}}</h3>
+                    @for (author of book.authors; track $index){
+                      <span>{{author}}</span>
+                    }
+                    @for (category of book.categories; track $index){
+										<div class="item-price">{{category}}</div>
+                  }
+									</figcaption>
+								</div>
+							</div>
+            </div>
+      </div>
+  }
+</div>
