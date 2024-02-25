@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-bookpage',
   standalone: true,
   imports: [],
-  templateUrl: './bookpage.component.html',
+  templateUrl:'./bookpage.component.html',
   styleUrl: './bookpage.component.css'
 })
 export class BookpageComponent {

@@ -18,6 +18,8 @@ books!: Array<Book>;
     this.bookService.getBooks().subscribe((res:any) => {
       this.books = res;
       console.log(this.books)
+    }, (error) => {
+      this.router.navigate(['not-found'])
     })
   }
   redirectToBook(id:number) {

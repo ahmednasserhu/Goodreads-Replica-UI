@@ -1,25 +1,31 @@
-  <div class="container">
+  <div class="cards">
   @for(book of books; track book.id){
-			<div class="product-list" data-aos="fade-up">
-						<div class="row">
-							<div class="col-md-3">
-								<div class="product-item">
-									<figure class="product-style">
-										<img [src]="book.imageUrl" alt="Books" class="product-item">
-										<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Want To Read</button>
-									</figure>
-									<figcaption>
-                      <h3>{{book.name}}</h3>
-                    @for (author of book.authors; track $index){
-                      <span>{{author}}</span>
-                    }
-                    @for (category of book.categories; track $index){
-										<div class="item-price">{{category}}</div>
-                  }
-									</figcaption>
-								</div>
-							</div>
+      <div class="card" style="background-color: #E6E4D8;">
+        <div class="card__img">
+            <picture>
+              <source media="(max-width: 320px)"
+                      [srcset]="book.imageUrl">
+              <source media="(min-width: 538px)"
+                      [srcset]="book.imageUrl">
+              <img [src]="book.imageUrl">
+            </picture>
+        </div>
+        <div class="card__details">
+          <h3 for="cozyroom">{{book.name}}</h3>
+          <div class="address">{{book.author.firstName}}{{ book.author.lastName }}</div>
+          <div class="price">
+            <div class="star">
+              <img src="https://image.flaticon.com/icons/svg/291/291205.svg" alt="">
+              <img src="https://image.flaticon.com/icons/svg/291/291205.svg" alt="">
+              <img src="https://image.flaticon.com/icons/svg/291/291205.svg" alt="">
+              <img src="https://image.flaticon.com/icons/svg/291/291205.svg" alt="">
             </div>
+            <div class="price__l">
+              <span class="price__label">{{book.category}}</span>
+            </div>
+          </div>
+          <button (click)="redirectToBook(book.id)">Want To Read </button>
+        </div>
       </div>
   }
 </div>
