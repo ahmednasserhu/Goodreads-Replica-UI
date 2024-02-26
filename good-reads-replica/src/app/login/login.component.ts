@@ -33,10 +33,11 @@ export class LoginComponent {
   onLogin() {
     this.http.postData(this.loginForm.value).subscribe(
       (res: any) => {
+        console.log(res);
         // Successful response
-        if (res && res.token) {
+        if (res) {
           alert('Login success');
-          // localStorage.setItem('Authorization', `Bearer ${res.token}`);
+          localStorage.setItem('authorization', `${res.token}`);
           this.router.navigateByUrl('/admin');
         }
       },
@@ -45,7 +46,7 @@ export class LoginComponent {
         if (error && error.error && error.error.status === 'fail') {
           console.log('Login failed');
           // this.showLoginErrorModal();
-          // alert(error.error.message || 'Wrong username or password');
+          alert(error.error.message || 'Wrong username or password');
         } else {
           console.error('Unexpected error:', error);
           // Handle other types of errors if needed

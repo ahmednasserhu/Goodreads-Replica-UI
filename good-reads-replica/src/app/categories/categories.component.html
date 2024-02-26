@@ -1,1 +1,97 @@
-<p>categories works!</p>
+<div class="category-management-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of Categories">
+        <td class="small">{{ category.id }}</td>
+        <td class="large">{{ category.name }}</td>
+        <td class="medium actions">
+          <a
+            id="editIcon"
+            role="button"
+            (click)="editCategory(content, category.id)"
+          >
+            <span class="icon">
+              <fa-icon
+                style="position: relative; top: 35%; left: 15px"
+                [icon]="editIcon"
+              ></fa-icon>
+            </span>
+          </a>
+          <a
+            id="deleteIcon"
+            role="button"
+            (click)="deleteCategory(category.id)"
+          >
+            <span class="icon">
+              <fa-icon
+                style="position: relative; top: 35%; right: 15px"
+                [icon]="deleteIcon"
+              ></fa-icon>
+            </span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a
+    id="addCategoryBtn"
+    class="add-category-button"
+    role="button"
+    (click)="togglePopup()"
+  >
+    <span class="icon">
+      <fa-icon [icon]="addCategory"></fa-icon>
+    </span>
+  </a>
+</div>
+
+<app-add-category-modal
+  *ngIf="showAddCategoryModal"
+  [showAddCategoryModal]="showAddCategoryModal"
+></app-add-category-modal>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Category</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="categoryName">Enter the new category name</label>
+        <input
+          id="categoryName"
+          class="form-control"
+          type="text"
+          name="categoryName"
+          formControlName="name"
+          required
+          autocomplete="off"
+        />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="modal.close('Cancel click')"
+        >
+          Close
+        </button>
+        <button type="submit" class="btn btn-outline-primary">Update</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

@@ -1,0 +1,14 @@
+<div class="popup">
+    <div class="close-btn" (click)="togglePopup()">&times;</div>
+    <form class="from" [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
+        <h2 id="header">Add Category</h2>
+        <div class="form-element">
+            <label class="label-style" for="name">Category Name</label>
+            <input class="input-style" type="text" name="name" id="name" placeholder="please enter the Category Name" formControlName="name" required
+            autocomplete="off">
+        </div>
+        <div class="form-element">
+            <button class="add-btn">Add a Category</button>
+        </div>
+      </form>
+</div>

@@ -8,21 +8,15 @@ import { Observable } from 'rxjs';
 export class HttpServiceService {
 
   private apiUrl = 'http://localhost:5000';
-  httpOptions : any = {
-    headers: new HttpHeaders({
-      // 'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundaryBODBNK9vWWeDNOP1',
-      'Content-Type' : 'application/json'
-    }),
-  };
+  
 
   constructor(private http : HttpClient) { }
 
+
+  getData(endPoint:string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${endPoint}`);
+  }
   postData(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, data, this.httpOptions);
+    return this.http.post<any>(`${this.apiUrl}/admin/login`, data);
   }
-
-  postAuthors(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/authors`, data, this.httpOptions);
-  }
-
 }

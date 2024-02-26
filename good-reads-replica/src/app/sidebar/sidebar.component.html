@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="navigation">
+      <ul>
+        <li>
+          <a>
+            <span class="icon">
+              <fa-icon [icon]="websiteIcon"></fa-icon>
+            </span>
+            <span class="title">Good Reads</span>
+          </a>
+        </li>
+  
+        <li>
+          <a
+            role="button"
+            (click)="onButtonClicked('categories')"
+          >
+            <span class="icon">
+              <fa-icon [icon]="categoryIcon"></fa-icon>
+            </span>
+            <span class="title">Categories</span>
+          </a>
+        </li>
+  
+        <li>
+          <a (click)="onButtonClicked('books')" role="button">
+            <span class="icon">
+              <fa-icon [icon]="booksIcon"></fa-icon>
+            </span>
+            <span class="title">Books</span>
+          </a>
+        </li>
+  
+        <li>
+          <a (click)="onButtonClicked('authors')" role="button">
+            <span class="icon">
+              <fa-icon [icon]="authorIcon"></fa-icon>
+            </span>
+            <span class="title">Authors</span>
+          </a>        
+        </li>
+
+        <li>
+          <a (click)="onButtonClicked('addAdmin')" role="button">
+            <span class="icon">
+              <fa-icon [icon]="addAdmin"></fa-icon>
+            </span>
+            <span class="title">Add Admin</span>
+          </a>        
+        </li>
+  
+        <li>
+          <a role="button">
+            <span class="icon">
+              <fa-icon [icon]="logoutIcon"></fa-icon>
+            </span>
+            <span class="title">Logout</span>
+          </a>
+        </li>
+  
+      </ul>
+    </div>
+  </div>
+  
+  <div class="main" [class.active]="isNavigationActive">
+    <div class="topbar">
+      <div class="toggle" (click)="toggleNavigation()">
+        <fa-icon [icon]="toggleIcon"></fa-icon>
+      </div>
+    </div>
+  </div>

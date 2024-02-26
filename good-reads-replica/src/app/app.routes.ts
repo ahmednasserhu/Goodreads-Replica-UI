@@ -10,29 +10,39 @@ export const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    title: 'Login Page'
+    title: 'Login Page',
   },
 
+  // {
+  //   path: 'admin',
+  //   component: AdminDashboardComponent,
+  //   children: [
+  //     { path: '', redirectTo: 'categories', pathMatch: 'full' },
+  //     { path: 'categories', component: CategoriesComponent, title: 'Categories' },
+  //   ],
+  //   title: 'Admin Dashboard'
+  // },
   {
     path: 'admin',
     component: AdminDashboardComponent,
-    children: [
-      { path: '', redirectTo: 'categories', pathMatch: 'full' },
-      { path: 'categories', component: CategoriesComponent, title: 'Categories' },
-      { path: 'authors', component: AuthorsComponent, title: 'Authors' },
-    ],
     title: 'Admin Dashboard'
   },
-
+  
   {
     path: 'admin/books',
     component: BooksComponent,
-    title: 'books'
+    title: 'books',
+  },
+
+  {
+    path: 'admin/authors',
+    component: AuthorsComponent,
+    title: 'books',
   },
 
   {
     path: '**',
     component: NotfoundComponent,
-    title: 'Not Found'
-  }
+    title: 'Not Found',
+  },
 ];

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PromptFailureComponent } from './prompt-failure.component';
+import { AddBookModalComponent } from './add-book-modal.component';
 
-describe('PromptFailureComponent', () => {
-  let component: PromptFailureComponent;
-  let fixture: ComponentFixture<PromptFailureComponent>;
+describe('AddBookModalComponent', () => {
+  let component: AddBookModalComponent;
+  let fixture: ComponentFixture<AddBookModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PromptFailureComponent]
+      imports: [AddBookModalComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PromptFailureComponent);
+    fixture = TestBed.createComponent(AddBookModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

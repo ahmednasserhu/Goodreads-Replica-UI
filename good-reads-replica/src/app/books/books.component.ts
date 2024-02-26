@@ -1,62 +1,143 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
-import { HttpServiceService } from '../services/http-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { UploadServiceService } from '../services/upload-service.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPencil, faTrashCan, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { AddBookModalComponent } from '../modals/add-book-modal/add-book-modal.component';
+import { BooksService } from '../services/books.service';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpServiceService } from '../services/http-service.service';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule,AddBookModalComponent,NgbModule],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css',
 })
 export class BooksComponent {
-  addBookForm: FormGroup;
+  editBookForm: FormGroup;
+  showAddBookModal!: boolean;
   selectedImage: File | null = null;
+  selectedBookId!:number
+  Books:any = []
+  categories:any = []
+  authors:any = []
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpServiceService,
-    private cd: ChangeDetectorRef,
-    private uploadService: UploadServiceService
+    private bookService : BooksService,
+    private modalService: NgbModal,
+    private authorService:HttpServiceService,
+    private categoryService:CategoryService
   ) {
-    this.addBookForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      dateOfBirth: [''],
+    this.editBookForm = this.fb.group({
+      name: [''],
+      category:[''],
+      author:[''],
       image: [null] 
     });
   }
 
+  ngOnInit(){
+    this.getBooks();
+  }
+
+  getBooks() {
+    this.bookService.getBookData('books').subscribe(
+      (res: any) => {
+        console.log('fetching data worked successfully');
+        this.Books = res;
+      },
+      (error: HttpErrorResponse) => {
+        console.error('fetching data failed', error);
+      }
+    );
+  }
+
+
+  togglePopup() {
+    this.showAddBookModal = !this.showAddBookModal;
+    console.log(this.showAddBookModal);
+  }
+
+
+  onSubmit() {
+    if (this.editBookForm.valid) {
+      const formData = this.editBookForm.value;
+      formData.image = this.selectedImage;
+      this.bookService
+        .updateBookData(formData, `books/${this.selectedBookId}`)
+        .subscribe(
+          (res) => {
+            this.getBooks();
+          },
+          (error: HttpErrorResponse) => {
+            console.error(error);
+          }
+        );
+    }
+  }
+
+  editBook(content: TemplateRef<any>, categoryId: number) {
+    this.getCategories();
+    this.getAuthors();
+    this.selectedBookId = categoryId;
+    this.modalService.open(content, { centered: true });
+    this.editBookForm.reset();
+  }
+
+  deleteBook(bookId: number) {
+    this.bookService.deleteBook('books', bookId).subscribe(
+      (res) => {
+        this.getBooks();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   onImagePicked(event: any) {
     const file: File = event.target.files[0];
-    
+  
     if (file) {
       this.selectedImage = file;
       console.log(file);
     }
   }
 
-  onSubmit() {
-    if (this.addBookForm.valid) {
-      const formData = this.addBookForm.value;
-      formData.image = this.selectedImage;
-      this.uploadService.uploadBook(formData).subscribe(
-        (res: any) => {
-          console.log('Upload successful:', res);
-        },
-        (error: HttpErrorResponse) => {
-          console.error('Upload failed:', error);
-        }
-      );
-    }
+  getCategories() {
+    this.categoryService.getCategoryData('categories').subscribe(
+      (res: any) => {
+        console.log('Fetching categories worked successfully');
+        this.categories = res;
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Fetching categories failed', error);
+      }
+    );
   }
+
+  getAuthors() {
+    this.authorService.getData('authors').subscribe(
+      (res: any) => {
+        console.log('Fetching categories worked successfully');
+        this.authors = res;
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Fetching categories failed', error);
+      }
+    );
+  }
+
+  editIcon = faPencil;
+  deleteIcon = faTrashCan;
+  addAuthor = faUserPlus;
 }

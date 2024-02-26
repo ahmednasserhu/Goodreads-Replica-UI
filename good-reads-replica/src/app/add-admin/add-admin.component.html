@@ -1,0 +1,13 @@
+<div class="form-box">
+  <form [formGroup]="addAdminForm" class="form">
+    <span class="title">Add Admin</span>
+    <div class="form-container">
+      <input type="text" class="input" formControlName="firstName" placeholder="First Name" />
+      <input type="text" class="input" formControlName="lastName" placeholder="Last Name" />
+      <input type="text" class="input" formControlName="username"  placeholder="Username" />
+      <input type="email" class="input" formControlName="email"  placeholder="Email" />
+      <input type="password" class="input" formControlName="password"   placeholder="Password" />
+    </div>
+    <button (click)="onSubmit()">Add Admin</button>
+  </form>
+</div>

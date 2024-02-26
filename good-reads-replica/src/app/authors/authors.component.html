@@ -1,1 +1,74 @@
-<p>authors works!</p>
+<div class="author-management-container">
+  <a id="addAuthorBtn" role="button" (click)="togglePopup()">
+    <span class="icon">
+      <fa-icon [icon]="addAuthor"></fa-icon>
+    </span>
+  </a>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Photo</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Date of Birth</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let author of Authors">
+        <td>{{ author.id }}</td>
+        <td class="photo-cell">
+          <img [src]="'http://localhost:5000/' + author.imageUrl" alt="Author Photo" />
+        </td>
+        <td>{{ author.firstName }}</td>
+        <td>{{ author.lastName }}</td>
+        <td>{{ author.dateOfBirth | date }}</td>
+        <td class="actions">
+          <a id="editIcon" role="button" (click)="editAuthor(author)">
+            <span class="icon">
+              <fa-icon style="position: relative; top:35%; left:15px" [icon]="editIcon"></fa-icon>
+            </span>
+          </a>
+          <a id="deleteIcon" role="button" (click)="deleteAuthor(author.id)">
+            <span class="icon">
+              <fa-icon style="position: relative; top:35%; right:15px" [icon]="deleteIcon"></fa-icon>
+            </span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    <!-- <app-edit-dialog></app-edit-dialog> -->
+
+<!-- Button trigger modal -->
+<!-- -->
+
+
+<div class="popup">
+    <div class="close-btn" (click)="togglePopup()">&times;</div>
+    <form class="from" [formGroup]="addAuthorForm" (ngSubmit)="onSubmit()">
+        <h2 id="header">Add Author</h2>
+        <div class="form-element">
+            <label class="label-style" for="firstName">First Name</label>
+            <input class="input-style" type="text" name="firstName" id="firstName" placeholder="please enter your firstName" formControlName="firstName" required>
+        </div>
+        <div class="form-element">
+            <label class="label-style" for="lastName">Last Name</label>
+            <input class="input-style" type="text" name="lastName" id="lastName" placeholder="please enter your lastName" formControlName="lastName" required>
+        </div>
+        <div class="form-element">
+            <label class="label-style" for="dateOfBirth">Date Of Birth</label>
+            <input class="input-style" type="date" name="dateOfBirth" id="dateOfBirth" formControlName="dateOfBirth" required>
+        </div>
+        <div class="form-element">
+            <label class="label-style" for="image">Image</label>
+            <input class="input-style" type="file" (change)="onImagePicked($event)">
+        </div>
+        <div class="form-element">
+            <button class="add-btn">Add an Author</button>
+        </div>
+      </form>
+</div>

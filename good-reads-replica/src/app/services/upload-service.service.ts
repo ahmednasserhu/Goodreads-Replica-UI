@@ -10,18 +10,28 @@ export class UploadServiceService {
 
   constructor(private http: HttpClient) {}
 
-  uploadBook(data: any): Observable<any> {
+  uploadData(data: any,endPoint:string): Observable<any> {
     const formData = new FormData();
 
-    // Append form fields to formData
     formData.append('firstName', data.firstName);
     formData.append('lastName', data.lastName);
     formData.append('dateOfBirth', data.dateOfBirth);
-
-    // Append the image file to formData
+    
     formData.append('image', data.image);
 
-    // Make the HTTP post request
-    return this.http.post<any>(`${this.apiUrl}/authors`, formData);
+    return this.http.post<any>(`${this.apiUrl}/${endPoint}`, formData);
+  }
+  updateData(data:any,endPoint:string): Observable<any> {
+    const formData = new FormData();
+    formData.append('firstName', data.firstName);
+    formData.append('lastName', data.lastName);
+    formData.append('dateOfBirth', data.dateOfBirth);
+    formData.append('image', data.image);
+
+    return this.http.patch<any>(`${this.apiUrl}/${endPoint}`, formData);
+  }
+
+  uploadAuthorData(data:any,endPoint:string){
+    return this.http.post<any>(`${this.apiUrl}/${endPoint}`, data);
   }
 }

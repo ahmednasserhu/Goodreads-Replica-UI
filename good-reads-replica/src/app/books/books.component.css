@@ -1,33 +1,173 @@
-div {
-    max-width: 400px;
-    margin: auto;
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #e6e4d8;
   }
   
-  form {
-    display: grid;
-    gap: 10px;
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
-  label {
-    font-weight: bold;
+  .popup {
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+    width: 380px;
+    padding: 20px 30px;
+    background-color: white;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms, transform 200ms ease-in-out 0ms;
   }
   
-  input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
+  .popup.active {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms, transform 200ms ease-in-out 0ms;
   }
   
-  button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
     cursor: pointer;
   }
   
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  .popup .close-btn:hover {
+    background: rgba(255, 0, 0, 0.835);
+  }
+  
+  #header {
+    text-align: center;
+    color: #222;
+    margin: 10px 0px 20px;
+    font-size: 25px;
+  }
+  
+  .form-element {
+    margin: 15px 0px;
+  }
+  
+  .label-style {
+    font-size: 16px;
+    color: #222;
+  }
+  
+  .input-style {
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+  }
+  
+  .add-btn {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: #58371f;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .author-management-container {
+    width: 100%;
+    position: relative;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: grey;
+    margin: 0 auto;
+    overflow-y: auto; /* Add this property */
+    max-height: 400px; /* Set a max-height according to your design */
+  }
+  
+  #addAuthorBtn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    padding: 5px;
+    background-color: #1f4058;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+  }
+  
+  #addAuthorBtn:hover {
+    transform: scale(1.1);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+  }
+  
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    background-color: #202227;
+    color: white;
+    box-sizing: border-box;
+  }
+  
+  th {
+    background-color: #58371f;
+    color: white;
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+  
+  td.actions,
+  th.actions {
+    /* margin: auto; */
+    /* text-align: center; */
+    /* display: flex; */
+    padding: 0;
+    width: 100%;
+    height: 100px;
+    overflow-y: hidden;
+    border-collapse: collapse;
+  }
+  
+  td.photo-cell {
+    padding: 0;
+    width: 100px;
+    height: 100px;
   }
   
