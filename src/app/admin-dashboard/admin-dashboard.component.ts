@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolve
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SidebarCommunicationService } from '../services/communication/sidebar-communication.service';
 import { Subscription } from 'rxjs';
-import { BooksComponent } from '../books/books.component';
+import { BooksAdminComponent } from '../books-admin/books-admin.component';
 import { CommonModule } from '@angular/common';
-import { CategoriesComponent } from '../categories/categories.component';
-import { AuthorsComponent } from '../authors/authors.component';
+import { CategoriesAdminComponent } from '../categories-admin/categories-admin.component';
+import { AuthorsAdminComponent } from '../authors-admin/authors-admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars, faBook, faBookOpen, faLayerGroup, faPen, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { AddAdminComponent } from '../add-admin/add-admin.component';
@@ -13,7 +13,7 @@ import { AddAdminComponent } from '../add-admin/add-admin.component';
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [SidebarComponent,BooksComponent,CommonModule,CategoriesComponent,AuthorsComponent, FontAwesomeModule,AddAdminComponent],
+  imports: [SidebarComponent,BooksAdminComponent,CommonModule,CategoriesAdminComponent,AuthorsAdminComponent, FontAwesomeModule,AddAdminComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css',
 })
@@ -40,11 +40,11 @@ export class AdminDashboardComponent implements OnInit {
     this.dynamicComponentContainer.clear(); // Clear previous component (if any)
 
     if (this.componentFlag === 'books') {
-      this.loadComponent(BooksComponent);
+      this.loadComponent(BooksAdminComponent);
     } else if (this.componentFlag === 'categories') {
-      this.loadComponent(CategoriesComponent);
+      this.loadComponent(CategoriesAdminComponent);
     } else if (this.componentFlag === 'authors') {
-      this.loadComponent(AuthorsComponent);
+      this.loadComponent(AuthorsAdminComponent);
     } else if (this.componentFlag === 'addAdmin'){
       this.loadComponent(AddAdminComponent)
     }

@@ -9,13 +9,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-categories',
+  selector: 'app-categories-admin',
   standalone: true,
   imports: [FontAwesomeModule, CommonModule, AddCategoryModalComponent,NgbModule,ReactiveFormsModule,],
-  templateUrl: './categories.component.html',
-  styleUrl: './categories.component.css',
+  templateUrl: './categories-admin.component.html',
+  styleUrl: './categories-admin.component.css',
 })
-export class CategoriesComponent {
+export class CategoriesAdminComponent {
   Categories: any = [];
   showAddCategoryModal!: boolean;
   content!: TemplateRef<any>;

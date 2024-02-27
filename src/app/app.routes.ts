@@ -4,9 +4,9 @@ import { AllTableComponent } from './all-table/all-table.component';
 import { ReadTableComponent } from './read-table/read-table.component';
 import { CurrentlyReadingTableComponent } from './currently-reading-table/currently-reading-table.component';
 import { WantToReadTableComponent } from './want-to-read-table/want-to-read-table.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { BooksComponent } from './books/books.component';
-import { AuthorsComponent } from './authors/authors.component';
+import { CategoriesAdminComponent } from './categories-admin/categories-admin.component';
+import { BooksAdminComponent } from './books-admin/books-admin.component';
+import { AuthorsAdminComponent } from './authors-admin/authors-admin.component';
 import { UserComponent } from './user/user.component';
 import { Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -28,18 +28,18 @@ export const routes: Routes = [
 
   {
     path:'admin/categories',
-    component: CategoriesComponent
+    component: CategoriesAdminComponent
   },
 
   {
     path: 'admin/books',
-    component: BooksComponent,
+    component: BooksAdminComponent,
     title: 'books',
   },
 
   {
     path: 'admin/authors',
-    component: AuthorsComponent,
+    component: AuthorsAdminComponent,
     title: 'books',
   },
 

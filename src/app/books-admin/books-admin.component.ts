@@ -15,13 +15,13 @@ import { HttpServiceService } from '../services/http-service.service';
 import { CategoryService } from '../services/category.service';
 
 @Component({
-  selector: 'app-books',
+  selector: 'app-books-admin',
   standalone: true,
   imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule,AddBookModalComponent,NgbModule],
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.css',
+  templateUrl: './books-admin.component.html',
+  styleUrl: './books-admin.component.css',
 })
-export class BooksComponent {
+export class BooksAdminComponent {
   editBookForm: FormGroup;
   showAddBookModal!: boolean;
   selectedImage: File | null = null;

@@ -18,13 +18,13 @@ import { HttpServiceService } from '../services/http-service.service';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
-  selector: 'app-authors',
+  selector: 'app-authors-admin',
   standalone: true,
-  templateUrl: './authors.component.html',
-  styleUrl: './authors.component.css',
+  templateUrl: './authors-admin.component.html',
+  styleUrl: './authors-admin.component.css',
   imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule,EditDialogComponent],
 })
-export class AuthorsComponent {
+export class AuthorsAdminComponent {
   addAuthorForm: FormGroup;
   selectedImage: File | null = null;
   Authors: any = [];
