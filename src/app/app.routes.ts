@@ -11,6 +11,8 @@ import { UserComponent } from './user/user.component';
 import { Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './category/category.component';
 
 export const routes: Routes = [
   {
@@ -60,6 +62,14 @@ export const routes: Routes = [
       { path: 'currently-read', component: CurrentlyReadingTableComponent },
       { path: 'want-to-read', component: WantToReadTableComponent },
     ],
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
+  },
+  {
+    path: 'categories/:categoryId',
+    component: CategoryComponent,
   },
 
   {

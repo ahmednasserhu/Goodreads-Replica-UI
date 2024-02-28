@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../interfaces/category';
+import { Book } from '../interfaces/book';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,10 @@ export class CategoryService {
 
   getCategories() {
     return this.http.get<Category[]>(this.apiUrl);
+  }
+
+  getCategory(categoryId: String) {
+    return this.http.get<Category>(`${this.apiUrl}/${categoryId}`);
   }
 
   updataCategory(data: String, categoryId: Number) {

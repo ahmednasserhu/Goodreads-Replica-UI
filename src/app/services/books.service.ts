@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Book } from '../interfaces/book';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class BooksService {
     formData.append('name', data.name);
     formData.append('category', data.category);
     formData.append('author', data.author);
-    
+
     formData.append('image', data.image);
     return this.http.patch<any>(`${this.apiUrl}/${endPoint}`, formData);
   }
@@ -42,5 +43,9 @@ export class BooksService {
     );
     const fullUrl = `${this.apiUrl}/${endPoint}/${categoryId}`;
     return this.http.delete<any>(fullUrl, { headers });
+  }
+
+  getCategoryBooks(id: String) {
+    return this.http.get<Book[]>(`${this.apiUrl}/books?categoryId=${id}`);
   }
 }
