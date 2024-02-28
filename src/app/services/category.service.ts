@@ -1,30 +1,38 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Category } from '../interfaces/category';
+import { Book } from '../interfaces/book';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
+  constructor(private http: HttpClient) {}
+  private apiUrl = 'http://localhost:5000/categories';
 
-  constructor(private http: HttpClient) { }
-  private apiUrl = 'http://localhost:5000';
-
-  uploadCategoryData(data:any,endPoint:string){
-    return this.http.post<any>(`${this.apiUrl}/${endPoint}`, data);
+  createCategory(data: String) {
+    return this.http.post<Category>(this.apiUrl, data);
   }
 
-  getCategoryData(endPoint:string){
-    return this.http.get<any>(`${this.apiUrl}/${endPoint}`);
+  getCategories() {
+    return this.http.get<Category[]>(this.apiUrl);
   }
 
-  updataCategoryData(data:any, endPoint:string){
-    return this.http.patch<any>(`${this.apiUrl}/${endPoint}`, data);
+  getCategory(categoryId: String) {
+    return this.http.get<Category>(`${this.apiUrl}/${categoryId}`);
   }
 
-  deleteCategory(endPoint: string, categoryId: number): Observable<any> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    const fullUrl = `${this.apiUrl}/${endPoint}/${categoryId}`;
+  updataCategory(data: String, categoryId: Number) {
+    return this.http.patch<Category>(`${this.apiUrl}/${categoryId}`, data);
+  }
+
+  deleteCategory(categoryId: number): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    );
+    const fullUrl = `${this.apiUrl}/${categoryId}`;
     return this.http.delete<any>(fullUrl, { headers });
   }
 }

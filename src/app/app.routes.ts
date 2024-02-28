@@ -7,24 +7,25 @@ import { UserComponent } from './user/user.component';
 import { Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './category/category.component';
 
 export const routes: Routes = [
-
   {
     path: 'admin/login',
     component: LoginComponent,
-    title: 'login'
+    title: 'login',
   },
 
   {
     path: 'admin',
     component: AdminDashboardComponent,
-    title: 'Admin Dashboard'
+    title: 'Admin Dashboard',
   },
 
   {
-    path:'admin/categories',
-    component: CategoriesAdminComponent
+    path: 'admin/categories',
+    component: CategoriesAdminComponent,
   },
 
   {
@@ -50,6 +51,14 @@ export const routes: Routes = [
   {
     path: 'user',
     component: UserComponent
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
+  },
+  {
+    path: 'categories/:categoryId',
+    component: CategoryComponent,
   },
 
   {

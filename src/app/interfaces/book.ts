@@ -1,3 +1,5 @@
+import { Category } from './category';
+
 export interface Book {
   id: String;
   name: String;
@@ -11,8 +13,5 @@ export interface Book {
     dateOfBirth: Date;
     imageUrl: String;
   };
-  categoryId: {
-    id: String;
-    name: String;
-  };
+  categoryId: Category;
 }

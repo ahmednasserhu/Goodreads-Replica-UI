@@ -10,12 +10,13 @@ import { BooksService } from '../../services/books.service';
 import { CategoryService } from '../../services/category.service';
 import { HttpServiceService } from '../../services/http-service.service';
 import { CommonModule } from '@angular/common';
-import { UploadServiceService } from '../../services/upload-service.service';
+import { catchError } from 'rxjs';
+import { Category } from '../../interfaces/category';
 
 @Component({
   selector: 'app-add-book-modal',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './add-book-modal.component.html',
   styleUrl: './add-book-modal.component.css',
 })
@@ -24,14 +25,14 @@ export class AddBookModalComponent {
   addBookForm: FormGroup;
   selectedImage: File | null = null;
   books: any;
-  categories: any = [];
+  categories: Category[] = [];
   authors: any = [];
 
   constructor(
     private fb: FormBuilder,
     private bookService: BooksService,
     private categoryService: CategoryService,
-    private authorService: HttpServiceService,
+    private authorService: HttpServiceService
   ) {
     this.addBookForm = this.fb.group({
       name: ['', Validators.required],
@@ -41,7 +42,7 @@ export class AddBookModalComponent {
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getAuthors();
     this.getCategories();
     this.getBooks();
@@ -76,13 +77,12 @@ export class AddBookModalComponent {
 
   onImagePicked(event: any) {
     const file: File = event.target.files[0];
-  
+
     if (file) {
       this.selectedImage = file;
       console.log(file);
     }
   }
-  
 
   getBooks() {
     this.bookService.getBookData('categories').subscribe(
@@ -97,15 +97,17 @@ export class AddBookModalComponent {
   }
 
   getCategories() {
-    this.categoryService.getCategoryData('categories').subscribe(
-      (res: any) => {
-        console.log('Fetching categories worked successfully');
-        this.categories = res;
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Fetching categories failed', error);
-      }
-    );
+    this.categoryService
+      .getCategories()
+      .pipe(
+        catchError((error) => {
+          console.log('Retrieve Categories Failed : ', error);
+          throw error;
+        })
+      )
+      .subscribe((categories) => {
+        this.categories = categories;
+      });
   }
 
   getAuthors() {

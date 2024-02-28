@@ -1,38 +1,45 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UploadServiceService } from '../../services/upload-service.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-add-category-modal',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './add-category-modal.component.html',
-  styleUrl: './add-category-modal.component.css'
+  styleUrl: './add-category-modal.component.css',
 })
 export class AddCategoryModalComponent {
   @Input() showAddCategoryModal: boolean = false;
-  addCategoryForm: FormGroup
-  constructor(private fb:FormBuilder,private categoryService:CategoryService) {
+  addCategoryForm: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private categoryService: CategoryService
+  ) {
     this.addCategoryForm = this.fb.group({
-      name:['',Validators.required],
-    })
+      name: ['', Validators.required],
+    });
   }
 
   onSubmit() {
     if (this.addCategoryForm.valid) {
       const formData = this.addCategoryForm.value;
-      this.categoryService.uploadCategoryData(formData, 'categories').subscribe(
-        (res: any) => {
-          console.log('Upload successful:', res);
-          // this.getAuthors();
-        },
-        (error: HttpErrorResponse) => {
-          console.error('Upload failed:', error);
-        }
-      );
+      this.categoryService
+        .createCategory(formData)
+        .pipe(
+          catchError((error) => {
+            console.log('Create category failed : ', error);
+            return error;
+          })
+        )
+        .subscribe();
     }
   }
 
