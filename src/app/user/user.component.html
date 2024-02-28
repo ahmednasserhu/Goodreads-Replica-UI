@@ -1,26 +1,21 @@
-<div>
-  <router-outlet></router-outlet>
-</div>
-
 <div class="vertical-menu">
   <nav class="nav flex-column">
-    <a class="nav-link" routerLink="/user/all" routerLinkActive="active-link"
-      >All</a
-    >
-    <a class="nav-link" routerLink="/user/read" routerLinkActive="active-link"
-      >Read</a
-    >
-    <a
-      class="nav-link"
-      routerLink="/user/currently-read"
-      routerLinkActive="active-link"
-      >Currently Reading</a
-    >
-    <a
-      class="nav-link"
-      routerLink="/user/want-to-read"
-      routerLinkActive="active-link"
-      >Want to Read</a
-    >
+    <div *ngIf="selectedTab === 'all'">
+      <app-all-table></app-all-table>
+    </div>
+    <div *ngIf="selectedTab === 'read'">
+      <app-read-table></app-read-table>
+    </div>
+    <div *ngIf="selectedTab === 'currently-read'">
+      <app-currently-reading-table></app-currently-reading-table>
+    </div>
+    <div *ngIf="selectedTab === 'want-to-read'">
+      <app-want-to-read-table></app-want-to-read-table>
+    </div>
+
+    <button class="nav-link" (click)="switchTab('all')">All</button>
+    <button class="nav-link" (click)="switchTab('read')">Read</button>
+    <button class="nav-link" (click)="switchTab('currently-read')">Currently Reading</button>
+    <button class="nav-link" (click)="switchTab('want-to-read')">Want to Read</button>
   </nav>
 </div>

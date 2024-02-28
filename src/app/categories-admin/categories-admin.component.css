@@ -1,0 +1,78 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #e6e4d8;
+}
+
+.category-management-container {
+  width: 100%;
+  position: relative;
+  max-width: 800px;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: grey;
+  margin: 0 auto;
+  overflow-y: auto; /* Add this property */
+  max-height: 400px; /* Set a max-height according to your design */
+}
+
+#addCategoryBtn {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  padding: 5px;
+  background-color: #1f4058;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+#addCategoryBtn:hover {
+  transform: scale(1.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  background-color: #202227;
+  color: white;
+  box-sizing: border-box;
+}
+
+th {
+  background-color: #58371f;
+  color: white;
+}
+
+.small {
+  font-size: smaller;
+}
+
+.large {
+  font-size: larger;
+}
+
+.medium {
+  font-size: medium;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  height: 50px;
+}

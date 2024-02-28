@@ -1,0 +1,125 @@
+<div class="author-management-container">
+  <a id="addAuthorBtn" role="button" (click)="togglePopup()">
+    <span class="icon">
+      <fa-icon [icon]="addAuthor"></fa-icon>
+    </span>
+  </a>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Category Id</th>
+        <th>Author Id</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of Books">
+        <td>{{ book.id }}</td>
+        <td class="photo-cell">
+          <img [src]="'http://localhost:5000/' + book.imageUrl" alt="Author Photo" />
+        </td>
+        <td>{{ book.name }}</td>
+        <td>{{ book.category.id }}</td>
+        <td>{{ book.author.id }}</td>
+        <td class="actions">
+          <a id="editIcon" role="button" (click)="editBook(content, book.id)">
+            <span class="icon">
+              <fa-icon style="position: relative; top:35%; left:15px" [icon]="editIcon"></fa-icon>
+            </span>
+          </a>
+          <a id="deleteIcon" role="button" (click)="deleteBook(book.id)">
+            <span class="icon">
+              <fa-icon style="position: relative; top:35%; right:15px" [icon]="deleteIcon"></fa-icon>
+            </span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-add-book-modal
+  *ngIf="showAddBookModal"
+  [showAddBookModal]="showAddBookModal"
+></app-add-book-modal>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Book</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editBookForm" (ngSubmit)="onSubmit()">
+      <!-- Book Name -->
+      <div class="mb-3">
+        <label for="bookName">Enter the Book name</label>
+        <input
+          id="bookName"
+          class="form-control"
+          type="text"
+          name="bookName"
+          formControlName="name"
+          autocomplete="off"
+        />
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="mb-3">
+        <label for="category">Select Category</label>
+        <select
+          id="category"
+          class="form-control"
+          formControlName="category"
+        >
+          <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        </select>
+      </div>
+
+      <!-- Author Dropdown -->
+      <div class="mb-3">
+        <label for="author">Select Author</label>
+        <select
+          id="author"
+          class="form-control"
+          formControlName="author"
+        >
+          <option *ngFor="let author of authors" [value]="author.id">{{ author.firstName + ' ' + author.lastName }}</option>
+        </select>
+      </div>
+
+      <!-- Image Input -->
+      <div class="mb-3">
+        <label for="image">Select Image</label>
+        <input
+          id="image"
+          class="form-control"
+          formControlName="image"
+          type="file"
+          (change)="onImagePicked($event)"
+        />
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="modal.close('Cancel click')"
+        >
+          Close
+        </button>
+        <button type="submit" class="btn btn-outline-primary">Update</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+<!-- you can update photo name or category or author -->

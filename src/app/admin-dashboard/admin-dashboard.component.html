@@ -1,0 +1,12 @@
+<div class="container">
+  <app-sidebar></app-sidebar>
+</div>
+
+<div class="main" [class.active]="isNavigationActive">
+  <div class="topbar">
+    <div class="toggle" (click)="toggleNavigation()">
+      <fa-icon [icon]="toggleIcon"></fa-icon>
+    </div>
+  </div>
+  <div #dynamicComponentContainer style="position: relative; bottom: 40px;"></div>
+</div>

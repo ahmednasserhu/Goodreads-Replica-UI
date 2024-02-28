@@ -1,0 +1,33 @@
+<div class="popup">
+    <div class="close-btn" (click)="togglePopup()">&times;</div>
+    <form class="from" [formGroup]="addBookForm" (ngSubmit)="onSubmit()">
+        <h2 id="header">Add Book</h2>
+        <div class="form-element">
+            <label class="label-style" for="name">Book Name</label>
+            <input class="input-style" type="text" name="name" id="name" placeholder="please enter your firstName" formControlName="name" required autocomplete="off">
+        </div>
+        <div class="form-element">
+          <label class="label-style" for="categoryId">Category</label>
+          <select class="input-style" id="categoryId" formControlName="category" required>
+            @for (category of categories; track $index) {
+              <option [value]="category.id">{{ category.name }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-element">
+          <label class="label-style" for="categoryId">Author</label>
+          <select class="input-style" id="categoryId" formControlName="author" required>
+            @for (author of authors; track $index) {
+              <option [value]="author.id">{{ author.firstName + ' ' + author.lastName }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-element">
+            <label class="label-style" for="image">Image</label>
+            <input class="input-style" formControlName="image" type="file" (change)="onImagePicked($event)">
+        </div>
+        <div class="form-element">
+            <button class="add-btn">Add a Book</button>
+        </div>
+      </form>
+</div>

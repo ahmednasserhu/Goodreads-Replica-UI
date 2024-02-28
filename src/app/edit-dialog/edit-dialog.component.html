@@ -1,0 +1,25 @@
+<div class="popup">
+    <div class="close-btn" (click)="togglePopup()">&times;</div>
+    <form class="from" [formGroup]="editAuthorForm" (ngSubmit)="onSubmit()">
+        <h2 id="header">Add Author</h2>
+        <div class="form-element">
+            <label class="label-style" for="firstName">First Name</label>
+            <input class="input-style" type="text" name="firstName" id="firstName" placeholder="please enter your firstName" formControlName="firstName" required>
+        </div>
+        <div class="form-element">
+            <label class="label-style" for="lastName">Last Name</label>
+            <input class="input-style" type="text" name="lastName" id="lastName" placeholder="please enter your lastName" formControlName="lastName" required>
+        </div>
+        <div class="form-element">
+            <label class="label-style" for="dateOfBirth">Date Of Birth</label>
+            <input class="input-style" type="date" name="dateOfBirth" id="dateOfBirth" formControlName="dateOfBirth" required>
+        </div>
+        <div class="form-element">
+            <label class="label-style" for="image">Image</label>
+            <input class="input-style" type="file" (change)="onImagePicked($event)">
+        </div>
+        <div class="form-element">
+            <button class="add-btn">Edit an Author</button>
+        </div>
+      </form>
+</div>

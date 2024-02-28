@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { Book } from '../interfaces/book';
 import { Category } from '../interfaces/category';
+import { BooksService } from '../services/books.service';
 
 @Component({
   selector: 'app-category',
@@ -14,18 +15,18 @@ export class CategoryComponent implements OnInit {
   category!: Category;
   books!: Book[];
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private bookService: BooksService
+  ) {}
 
   ngOnInit() {
     this.categoryService
       .getCategory(this.categoryId)
       .subscribe((category) => (this.category = category));
 
-    this.categoryService
-      .getCategoryBooks(this.categoryId)
-      .subscribe((books) => {
-        this.books = books;
-        console.log(books);
-      });
+    this.bookService.getCategoryBooks(this.categoryId).subscribe((books) => {
+      this.books = books;
+    });
   }
 }
