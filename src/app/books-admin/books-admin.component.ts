@@ -1,23 +1,30 @@
 import { CommonModule } from '@angular/common';
 import { Component, TemplateRef } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPencil, faTrashCan, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPencil,
+  faTrashCan,
+  faUserPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import { AddBookModalComponent } from '../modals/add-book-modal/add-book-modal.component';
 import { BooksService } from '../services/books.service';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpServiceService } from '../services/http-service.service';
 import { CategoryService } from '../services/category.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-books-admin',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule,AddBookModalComponent,NgbModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    AddBookModalComponent,
+    NgbModule,
+  ],
   templateUrl: './books-admin.component.html',
   styleUrl: './books-admin.component.css',
 })
@@ -25,27 +32,27 @@ export class BooksAdminComponent {
   editBookForm: FormGroup;
   showAddBookModal!: boolean;
   selectedImage: File | null = null;
-  selectedBookId!:number
-  Books:any = []
-  categories:any = []
-  authors:any = []
+  selectedBookId!: number;
+  Books: any = [];
+  categories: any = [];
+  authors: any = [];
 
   constructor(
     private fb: FormBuilder,
-    private bookService : BooksService,
+    private bookService: BooksService,
     private modalService: NgbModal,
-    private authorService:HttpServiceService,
-    private categoryService:CategoryService
+    private authorService: HttpServiceService,
+    private categoryService: CategoryService
   ) {
     this.editBookForm = this.fb.group({
       name: [''],
-      category:[''],
-      author:[''],
-      image: [null] 
+      category: [''],
+      author: [''],
+      image: [null],
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getBooks();
   }
 
@@ -61,12 +68,10 @@ export class BooksAdminComponent {
     );
   }
 
-
   togglePopup() {
     this.showAddBookModal = !this.showAddBookModal;
     console.log(this.showAddBookModal);
   }
-
 
   onSubmit() {
     if (this.editBookForm.valid) {
@@ -106,7 +111,7 @@ export class BooksAdminComponent {
 
   onImagePicked(event: any) {
     const file: File = event.target.files[0];
-  
+
     if (file) {
       this.selectedImage = file;
       console.log(file);
@@ -114,15 +119,17 @@ export class BooksAdminComponent {
   }
 
   getCategories() {
-    this.categoryService.getCategoryData('categories').subscribe(
-      (res: any) => {
-        console.log('Fetching categories worked successfully');
-        this.categories = res;
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Fetching categories failed', error);
-      }
-    );
+    this.categoryService
+      .getCategories()
+      .pipe(
+        catchError((error) => {
+          console.log('Retrieve categories failed : ', error);
+          return error;
+        })
+      )
+      .subscribe((categories) => {
+        this.categories = categories;
+      });
   }
 
   getAuthors() {

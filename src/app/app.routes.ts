@@ -13,22 +13,21 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { NotfoundComponent } from './notfound/notfound.component';
 
 export const routes: Routes = [
-
   {
     path: 'admin/login',
     component: LoginComponent,
-    title: 'login'
+    title: 'login',
   },
 
   {
     path: 'admin',
     component: AdminDashboardComponent,
-    title: 'Admin Dashboard'
+    title: 'Admin Dashboard',
   },
 
   {
-    path:'admin/categories',
-    component: CategoriesAdminComponent
+    path: 'admin/categories',
+    component: CategoriesAdminComponent,
   },
 
   {
