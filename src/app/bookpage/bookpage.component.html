@@ -1,38 +1,42 @@
 <div class="container">
-  <img [src]="book.imageUrl" [alt]="book.name"/>
-
-  <div class="details">
-    <div class="header">
-      <span class="name">
-        {{book.name}}
-      </span>
-      <span class="author"><a routerLink="/authors/:id">{{book.author}}</a></span>
-      <span class="author">{{book.category}}</span>
-    </div>
-    <!-- <div class="rating">
-          <star-rating [starType]="'svg'" [rating]="book.rating"></star-rating>
-    </div>
-    <div class="categories">
-      @for(category of book.categoryId; track catgoryId)
-      {
-        <a  routerLink="/catefories/:id">
-          {{category.name}}
-        </a>
-      }
-    </div> -->
-    <button>
-      <div class="dropdown">
-      <input type="checkbox" id="dropdown">
-        <label class="dropdown__face" for="dropdown">
-          <div class="dropdown__text">Dropdown</div>
-          <div class="dropdown__arrow"></div>
-        </label>
-        <ul class="dropdown__items">
-          <li>read</li>
-          <li>want to read</li>
-          <li>currently reading</li>
-        </ul>
+  <div class="col-lg-8 border p-3 main-section bg-white">
+    <div class="row m-0">
+      <div class="col-lg-4 left-side-product-box pb-3">
+        <img [src]="book.imageUrl" class="border p-3">
       </div>
-    </button>
+      <span class="sub-img">
+        <p-rating [(ngModel)]="rate" [cancel]="false" style="display: inline-block;"></p-rating>
+      </span>
+      <div class="col-lg-8">
+        <div class="right-side-pro-detail border p-3 m-0">
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="m-0 p-0 price-pro">{{book.name}}</p>
+              <hr class="p-0 m-0">
+            </div>
+            <div class="col-lg-12 pt-2">
+              <h5>book Detail</h5>
+              <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris.</span>
+              <hr class="m-0 pt-2 mt-2">
+            </div>
+            <div class="col-lg-12">
+              <p class="tag-section"><strong>Author : </strong><a routerLink="authors/:author.id">{{book.author.firstName}}
+                  {{book.author.lastName}}</a></p>
+              <p class="tag-section"><strong>Category : </strong><a routerLink="categories/:categoty.id">{{book.category.name}}</a></p>
+            </div>
+            <div class="col-lg-12 mt-3">
+              <div class="row">
+                <div class="col-lg-12 pb-2">
+                  <a href="#" class="btn btn-brown w-100"
+                    style="background-color: #372213; color: #E6E4D8; font-size: 20px;">Add To Cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

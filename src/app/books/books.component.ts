@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
   styleUrl: './books.component.css'
 })
 export class BooksComponent {
-[x: string]: any;
 books!: Array<Book>;
   constructor(private bookService: BookService, private router: Router ) { }
   ngOnInit() {
@@ -22,7 +21,7 @@ books!: Array<Book>;
       this.router.navigate(['not-found'])
     })
   }
-  redirectToBook(id:number) {
+  redirectToBook(id:String) {
     this.router.navigate(['books', id]);
   }
 }

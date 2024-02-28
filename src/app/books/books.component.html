@@ -21,11 +21,12 @@
               <img src="https://image.flaticon.com/icons/svg/291/291205.svg" alt="">
             </div>
             <div class="price__l">
-              <span class="price__label">{{book.category}}</span>
+              <span class="price__label">{{book.category.name}}</span>
             </div>
           </div>
-          <button (click)="redirectToBook(book.id)">Want To Read </button>
+          <button (click)="redirectToBook(book.id)">Read </button>
         </div>
       </div>
   }
 </div>
+
