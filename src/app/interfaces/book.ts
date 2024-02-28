@@ -6,12 +6,12 @@ export interface Book {
   imageUrl: String;
   rating: Number;
   avgRating: Number;
-  authorId: {
+  author: {
     id: String;
     firstName: String;
     lastName: String;
     dateOfBirth: Date;
     imageUrl: String;
   };
-  categoryId: Category;
+  category: Category;
 }

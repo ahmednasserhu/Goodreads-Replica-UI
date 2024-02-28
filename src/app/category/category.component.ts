@@ -29,7 +29,6 @@ export class CategoryComponent implements OnInit {
 
     this.bookService.getCategoryBooks(this.categoryId).subscribe((books) => {
       this.books = books;
-      console.log(books);
     });
   }
 }
