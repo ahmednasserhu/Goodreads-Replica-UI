@@ -3,12 +3,14 @@ import { CategoryService } from '../services/category.service';
 import { Book } from '../interfaces/book';
 import { Category } from '../interfaces/category';
 import { BooksService } from '../services/books.service';
+import { BookCardComponent } from '../book-card/book-card.component';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  templateUrl:'./category.component.html',
+  templateUrl: './category.component.html',
   styleUrl: './category.component.css',
+  imports: [BookCardComponent],
 })
 export class CategoryComponent implements OnInit {
   @Input() categoryId!: String;
