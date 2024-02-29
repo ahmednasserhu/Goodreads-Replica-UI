@@ -12,8 +12,6 @@ import { CategoryComponent } from './category/category.component';
 import { BookpageComponent } from './bookpage/bookpage.component';
 import { BooksComponent } from './books/books.component';
 
-
-
 export const routes: Routes = [
   {
     path: 'admin/login',
@@ -47,18 +45,21 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+    title: 'Register',
   },
   {
     path: 'login',
     component: LoginComponent,
+    title: 'Login',
   },
   {
     path: 'user',
-    component: UserComponent
+    component: UserComponent,
   },
   {
     path: 'categories',
     component: CategoriesComponent,
+    title: 'Categories',
   },
   {
     path: 'categories/:categoryId',
@@ -67,11 +68,11 @@ export const routes: Routes = [
   {
     path: 'books',
     component: BooksComponent,
-    title:'books'
+    title: 'books',
   },
   {
     path: 'books/:id',
-    component:BookpageComponent
+    component: BookpageComponent,
   },
   {
     path: '**',
