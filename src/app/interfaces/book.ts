@@ -6,7 +6,11 @@ export interface Book {
   name: String;
   imageUrl: String;
   rating: Number;
-  avgRating: Number;
   author: Author;
+  avgRating:  {
+    ratings: Number;
+    rateValue: Number;
+    sumRatings: Number;
+  };
   category: Category;
 }

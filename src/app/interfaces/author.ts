@@ -1,7 +1,7 @@
 export interface Author {
-  id: String;
   firstName: String;
   lastName: String;
-  dateOfBirth: Date;
+  dateOfBirth: String;
   imageUrl: String;
+  id: String;
 }

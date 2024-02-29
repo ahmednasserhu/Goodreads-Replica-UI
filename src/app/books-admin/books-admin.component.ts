@@ -61,6 +61,7 @@ export class BooksAdminComponent {
       (res: any) => {
         console.log('fetching data worked successfully');
         this.Books = res;
+        console.log(this.Books[3].id)
       },
       (error: HttpErrorResponse) => {
         console.error('fetching data failed', error);
