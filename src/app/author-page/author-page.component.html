@@ -1,1 +1,45 @@
-<p>author-page works!</p>
+<div class="conatiner">
+  <div class="profile">
+    <img src="http://localhost:5000/{{ author.imageUrl }}" alt="author image" />
+    <div class="info">
+      <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+      <h3>{{ author.dateOfBirth | date }}</h3>
+    </div>
+  </div>
+  <div class="books">
+    <h1>Author Books</h1>
+    @for(book of authorBooks; track book.id){
+    <div class="book">
+      <div class="info">
+        <img
+          src="http://localhost:5000/{{ book.imageUrl }}"
+          alt="book cover image"
+        />
+        <div class="text">
+          <h2>{{ book.name }}</h2>
+          <p-rating
+            [(ngModel)]="book.rating"
+            [readonly]="true"
+            [cancel]="false"
+          ></p-rating>
+          {{ book.rating }}
+        </div>
+      </div>
+      <div class="user-input">
+        <select
+          class="form-select form-select-lg"
+          aria-label="Default select example"
+          (change)="addBookToShelf($event, book.id)"
+        >
+          <option selected>Select Shelf</option>
+          <option value="read">Read</option>
+          <option value="wantToRead">Want To Read</option>
+          <option value="currentlyReading">Currently Reading</option>
+        </select>
+      </div>
+    </div>
+    <hr class="border border-1 opacity-75" />
+
+    }
+  </div>
+</div>

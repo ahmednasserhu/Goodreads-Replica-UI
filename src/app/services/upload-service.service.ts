@@ -39,4 +39,8 @@ export class UploadServiceService {
   getAuthors() {
     return this.http.get<Author[]>(`${this.apiUrl}/authors`);
   }
+
+  getAuthor(authorId: String | Number) {
+    return this.http.get<Author>(`${this.apiUrl}/authors/${authorId}`);
+  }
 }
