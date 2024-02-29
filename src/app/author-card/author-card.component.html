@@ -1,0 +1,17 @@
+<div class="card" style="width: 32rem">
+  <img
+    src="http://localhost:5000/{{ author.imageUrl }}"
+    class="card-img-top"
+    alt="author image"
+  />
+  <div class="card-body">
+    <h5 class="card-title">
+      <a
+        [routerLink]="['/authors', author.id]"
+        class="link-success link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
+        >{{ author.firstName }} {{ author.lastName }}</a
+      >
+    </h5>
+    <p class="card-text">Born: {{ author.dateOfBirth | date }}</p>
+  </div>
+</div>

@@ -11,6 +11,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { BookpageComponent } from './bookpage/bookpage.component';
 import { BooksComponent } from './books/books.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { AuthorPageComponent } from './author-page/author-page.component';
 
 export const routes: Routes = [
   {
@@ -64,6 +66,15 @@ export const routes: Routes = [
   {
     path: 'categories/:categoryId',
     component: CategoryComponent,
+  },
+  {
+    path: 'authors',
+    component: AuthorsComponent,
+    title: 'Authors',
+  },
+  {
+    path: 'authors/:authorId',
+    component: AuthorPageComponent,
   },
   {
     path: 'books',
