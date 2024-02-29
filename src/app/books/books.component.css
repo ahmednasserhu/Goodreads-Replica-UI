@@ -12,7 +12,9 @@
     margin: 0;
     padding: 0;
 }
-
+a{
+        color: #86400d;
+      }
 .cards {
   margin-top: 1rem;
   padding: 10px;
@@ -84,7 +86,6 @@
          }
         }
       }
-
       button {
         cursor: pointer;
         width: 100%;

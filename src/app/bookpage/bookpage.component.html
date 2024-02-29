@@ -2,11 +2,9 @@
   <div class="col-lg-8 border p-3 main-section bg-white">
     <div class="row m-0">
       <div class="col-lg-4 left-side-product-box pb-3">
-        <img [src]="book.imageUrl" class="border p-3">
+        <img [src]="'http://localhost:5000/' + book.imageUrl" class="border p-3">
+        <p-rating  [(ngModel)]="rate" [cancel]="false" (onRate)="sendRate(rate)"></p-rating>
       </div>
-      <span class="sub-img">
-        <p-rating [(ngModel)]="rate" [cancel]="false" style="display: inline-block;"></p-rating>
-      </span>
       <div class="col-lg-8">
         <div class="right-side-pro-detail border p-3 m-0">
           <div class="row">
@@ -22,15 +20,16 @@
               <hr class="m-0 pt-2 mt-2">
             </div>
             <div class="col-lg-12">
-              <p class="tag-section"><strong>Author : </strong><a routerLink="authors/:author.id">{{book.author.firstName}}
-                  {{book.author.lastName}}</a></p>
-              <p class="tag-section"><strong>Category : </strong><a routerLink="categories/:categoty.id">{{book.category.name}}</a></p>
+              <p class="tag-section"><strong>Author : </strong><a
+                  [routerLink]="['/authors', book.authorId.id]">{{book.authorId.firstName}} {{book.authorId.lastName}}</a></p>
+              <p class="tag-section"><strong>Category : </strong><a
+                  [routerLink]="['/categories', book.categoryId.id]">{{book.categoryId.name}}</a></p>
             </div>
             <div class="col-lg-12 mt-3">
               <div class="row">
                 <div class="col-lg-12 pb-2">
-                  <a href="#" class="btn btn-brown w-100"
-                    style="background-color: #372213; color: #E6E4D8; font-size: 20px;">Add To Cart</a>
+                  <button href="#" class="btn btn-brown w-100" (click)="getRate()"
+                    style="background-color: #372213; color: #E6E4D8; font-size: 20px;">Want To Read</button>
                 </div>
               </div>
             </div>

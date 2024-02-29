@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Book } from '../interfaces/book';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,RouterLink } from '@angular/router';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-bookpage',
   standalone: true,
-  imports: [RatingModule, ReactiveFormsModule,FormsModule],
+  imports: [RatingModule, ReactiveFormsModule,FormsModule, RouterLink],
   templateUrl:'./bookpage.component.html',
   styleUrl: './bookpage.component.css'
 })
@@ -28,7 +28,7 @@ export class BookpageComponent {
   getRate() {
     console.log(this.rate);
   }
-  sendRate(data:any) {
+  sendRate(data: any) {
     this.bookRequest.addRate(data).subscribe((res) =>
       console.log(res))
   }
