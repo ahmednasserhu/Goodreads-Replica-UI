@@ -13,11 +13,18 @@ import {
 } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { catchError } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-author-page',
   standalone: true,
-  imports: [DatePipe, FormsModule, RatingModule, ReactiveFormsModule],
+  imports: [
+    DatePipe,
+    FormsModule,
+    RatingModule,
+    ReactiveFormsModule,
+    RouterLink,
+  ],
   templateUrl: './author-page.component.html',
   styleUrl: './author-page.component.css',
 })
