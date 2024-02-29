@@ -9,8 +9,6 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
-import { BookpageComponent } from './bookpage/bookpage.component';
-import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorPageComponent } from './author-page/author-page.component';
 
@@ -75,15 +73,6 @@ export const routes: Routes = [
   {
     path: 'authors/:authorId',
     component: AuthorPageComponent,
-  },
-  {
-    path: 'books',
-    component: BooksComponent,
-    title: 'books',
-  },
-  {
-    path: 'books/:id',
-    component: BookpageComponent,
   },
   {
     path: '**',

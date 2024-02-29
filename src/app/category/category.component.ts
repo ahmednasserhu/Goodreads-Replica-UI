@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { Book } from '../interfaces/book';
+import { BookCardComponent } from '../book-card/book-card.component';
 import { Category } from '../interfaces/category';
 import { BooksService } from '../services/books.service';
-import { BookCardComponent } from '../book-card/book-card.component';
 
 @Component({
   selector: 'app-category',
