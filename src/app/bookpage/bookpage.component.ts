@@ -1,35 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Book } from '../interfaces/book';
 import { ActivatedRoute,RouterLink } from '@angular/router';
 import { RatingModule } from 'primeng/rating';
+import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-bookpage',
   standalone: true,
-  imports: [RatingModule, ReactiveFormsModule,FormsModule, RouterLink],
+  imports: [RatingModule, DropdownModule ,ReactiveFormsModule,FormsModule, RouterLink],
   templateUrl:'./bookpage.component.html',
   styleUrl: './bookpage.component.css'
 })
 export class BookpageComponent {
-  book!: Book;
+  @Input()  book!: Book;
   rate: number = 0;
+  selectedshelf!: String;
+  id!: number;
+  data!: {
+    rating: number,
+    bookId: String,
+  }
+  shelves = ["Read", "Want To Read" , "Currently Reading"]
 
-
-  constructor(private bookRequest: BookService, private router:ActivatedRoute) {
+  constructor(private bookRequest: BookService, private router: ActivatedRoute) {
   }
   ngOnInit() {
-    this.bookRequest.getBookDetails(this.router.snapshot.params['id']).subscribe((res: any) => {
+    this.id = this.router.snapshot.params['id']
+    this.bookRequest.getBookDetails(this.id).subscribe((res: any) => {
       this.book = res;
     });
   }/* , (error) => {
     console.log(`${error} not Found`);
   }) */
-  getRate() {
-    console.log(this.rate);
-  }
-  sendRate(data: any) {
-    this.bookRequest.addRate(data).subscribe((res) =>
+
+  sendRate() {
+    const userId = window.localStorage.getItem("User");
+    this.data = {
+      rating: this.rate,
+      bookId: this.book.id,
+    };
+    this.bookRequest.addRate(this.data).subscribe((res) =>
       console.log(res))
   }
   }

@@ -1,4 +1,3 @@
-import { Author } from './author';
 import { Category } from './category';
 
 export interface Book {
@@ -6,11 +5,17 @@ export interface Book {
   name: String;
   imageUrl: String;
   rating: Number;
-  avgRating: {
+  avgRating:  {
     ratings: Number;
     rateValue: Number;
     sumRatings: Number;
   };
-  authorId: Author;
-  categoryId: Category;
+  author: {
+    id: String;
+    firstName: String;
+    lastName: String;
+    dateOfBirth: Date;
+    imageUrl: String;
+  };
+  category: Category;
 }

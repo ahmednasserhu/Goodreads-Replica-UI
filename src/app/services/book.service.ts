@@ -5,15 +5,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BookService {
-  private apiUrl = 'http://localhost:5000/books';
+  private apiUrl = 'http://localhost:5000/';
   constructor(private request:HttpClient) { }
   getBooks() {
-    return this.request.get(`${this.apiUrl}`);
+    return this.request.get(`${this.apiUrl}books`);
   }
   getBookDetails(id:number) {
-    return this.request.get(`${this.apiUrl}/${id}`)
+    return this.request.get(`${this.apiUrl}books/${id}`)
   }
   addRate(data: any) {
-    return this.request.patch(`${this.apiUrl}`, data);
+    return this.request.patch(`${this.apiUrl}users`, data);
   }
 }

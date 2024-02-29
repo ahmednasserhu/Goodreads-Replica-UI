@@ -10,7 +10,7 @@
       </div>
       <div class="card__details">
         <h3 for="cozyroom">{{book.name}}</h3>
-        <div class="address"><p class="tag-section"><strong>Author : </strong><a [routerLink]="['/authors', book.authorId.id]">{{book.authorId.firstName}} {{book.authorId.lastName}}</a></div>
+        <div class="address"><p class="tag-section"><strong>Author : </strong><a [routerLink]="['/authors', book.author.id]">{{book.author.firstName}} {{book.author.lastName}}</a></div>
         <div class="price">
           <div class="star">
             <img src="https://image.flaticon.com/icons/svg/291/291205.svg" alt="">
@@ -20,8 +20,8 @@
           </div>
           <div class="price__l">
             <p class="tag-section"><strong>Category : </strong>
-            <a  [routerLink]="['/categories', book.categoryId.id]">
-            <span class="price__label">{{book.categoryId.name}}</span>
+            <a  [routerLink]="['/categories', book.category.id]">
+            <span class="price__label">{{book.category.name}}</span>
           </a>
           </div>
         </div>
