@@ -63,7 +63,6 @@ export class AddBookModalComponent {
     if (this.addBookForm.valid) {
       const formData = this.addBookForm.value;
       formData.image = this.selectedImage;
-      debugger;
       this.bookService.uploadBookData(formData, 'books').subscribe(
         (res: any) => {
           this.getBooks();

@@ -19,7 +19,7 @@
       <tr *ngFor="let author of Authors">
         <td>{{ author.id }}</td>
         <td class="photo-cell">
-          <img [src]="apiUrl + author.imageUrl" alt="Author Photo" />
+          <img [src]="apiUrl + '/' + author.imageUrl" alt="Author Photo" />
         </td>
         <td>{{ author.firstName }}</td>
         <td>{{ author.lastName }}</td>
