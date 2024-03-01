@@ -15,6 +15,11 @@ import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent,
+    title: 'Home',
+  },
+  {
     path: 'admin/login',
     component: LoginComponent,
     title: 'login',
