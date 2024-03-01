@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { LogoutService } from '../services/logout.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
@@ -10,7 +11,7 @@ import { LogoutService } from '../services/logout.service';
   styleUrl: './logout.component.css',
 })
 export class LogoutComponent {
-  constructor(private logoutService: LogoutService) {}
+  constructor(private logoutService: LogoutService, private router: Router) {}
 
   ngOnInit() {
     this.logoutWithConfirmation();
@@ -44,6 +45,7 @@ export class LogoutComponent {
           }
         );
       }
+      this.router.navigateByUrl('/admin/login');
     });
   }
 }

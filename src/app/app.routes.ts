@@ -18,7 +18,6 @@ export const routes: Routes = [
     path: 'admin/login',
     component: LoginComponent,
     title: 'login',
-    canActivate: [onlyAdminGuard],
   },
 
   {
