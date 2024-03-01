@@ -10,6 +10,7 @@ import { RouterOutlet } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminDashboardComponent,
     NotfoundComponent,
     NgbModule,
+    SweetAlert2Module,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

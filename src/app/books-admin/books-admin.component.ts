@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, TemplateRef } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -47,9 +52,9 @@ export class BooksAdminComponent {
     private categoryService: CategoryService
   ) {
     this.editBookForm = this.fb.group({
-      name: [''],
-      category: [''],
-      author: [''],
+      name: ['', Validators.required],
+      categoryId: ['', Validators.required],
+      authorId: ['', Validators.required],
       image: [null],
     });
   }
@@ -80,16 +85,14 @@ export class BooksAdminComponent {
     if (this.editBookForm.valid) {
       const formData = this.editBookForm.value;
       formData.image = this.selectedImage;
-      this.bookService
-        .updateBookData(formData, `books/${this.selectedBookId}`)
-        .subscribe(
-          (res) => {
-            this.getBooks();
-          },
-          (error: HttpErrorResponse) => {
-            console.error(error);
-          }
-        );
+      this.bookService.updateBookData(formData, this.selectedBookId).subscribe(
+        (res) => {
+          this.getBooks();
+        },
+        (error: HttpErrorResponse) => {
+          console.error(error);
+        }
+      );
     }
   }
 

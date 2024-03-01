@@ -2,12 +2,112 @@
   <form [formGroup]="addAdminForm" class="form">
     <span class="title">Add Admin</span>
     <div class="form-container">
-      <input type="text" class="input" formControlName="firstName" placeholder="First Name" />
-      <input type="text" class="input" formControlName="lastName" placeholder="Last Name" />
-      <input type="text" class="input" formControlName="username"  placeholder="Username" />
-      <input type="email" class="input" formControlName="email"  placeholder="Email" />
-      <input type="password" class="input" formControlName="password"   placeholder="Password" />
+      <input
+        type="text"
+        class="input"
+        formControlName="firstName"
+        placeholder="First Name"
+      />
+      <div>
+        @if(addAdminForm.controls['firstName'].invalid &&
+        addAdminForm.controls['firstName'].touched){
+        <div class="form-text text-danger">
+          @if(addAdminForm.controls['firstName'].errors?.['required']){
+          <small>This Field is required</small>
+          }@if(addAdminForm.controls['firstName'].errors?.['minlength']){
+          <small>Minimum length is 3 characters</small>
+          }@if(addAdminForm.controls['firstName'].errors?.['maxlength']){
+          <small>Maximum length is 15 characters</small>
+          }@if(addAdminForm.controls['firstName'].errors?.['pattern']){
+          <small>Invalid format. Only letters allowed.</small>
+          }
+        </div>
+        }
+      </div>
+      <input
+        type="text"
+        class="input"
+        formControlName="lastName"
+        placeholder="Last Name"
+      />
+      <div>
+        @if(addAdminForm.controls['lastName'].invalid &&
+        addAdminForm.controls['lastName'].touched){
+        <div class="form-text text-danger">
+          @if(addAdminForm.controls['lastName'].errors?.['required']){
+          <small>This Field is required</small>
+          }@if(addAdminForm.controls['lastName'].errors?.['minlength']){
+          <small>Minimum length is 3 characters</small>
+          }@if(addAdminForm.controls['lastName'].errors?.['maxlength']){
+          <small>Maximum length is 15 characters</small>
+          }@if(addAdminForm.controls['lastName'].errors?.['pattern']){
+          <small>Invalid format. Only letters allowed.</small>
+          }
+        </div>
+        }
+      </div>
+      <input
+        type="text"
+        class="input"
+        formControlName="username"
+        placeholder="Username"
+      />
+      <div>
+        @if(addAdminForm.controls['username'].invalid &&
+        addAdminForm.controls['username'].touched){
+        <div class="form-text text-danger">
+          @if(addAdminForm.controls['username'].errors?.['required']){
+          <small>This Field is required</small>
+          }@if(addAdminForm.controls['username'].errors?.['minlength']){
+          <small>Minimum length is 3 characters</small>
+          }@if(addAdminForm.controls['username'].errors?.['maxlength']){
+          <small>Maximum length is 15 characters</small>
+          }@if(addAdminForm.controls['username'].errors?.['pattern']){
+          <small>Invalid format. Only letters allowed.</small>
+          }
+        </div>
+        }
+      </div>
+      <input
+        type="email"
+        class="input"
+        formControlName="email"
+        placeholder="Email"
+      />
+      <div>
+        @if(addAdminForm.controls['email'].invalid &&
+        addAdminForm.controls['email'].touched){
+        <div class="form-text text-danger">
+          @if(addAdminForm.controls['email'].errors?.['required']){
+          <small>This Field is required</small>
+          }@if(addAdminForm.controls['email'].errors?.['pattern']) {
+          <small>Invalid format. Only letters allowed.</small>
+          }
+        </div>
+        }
+      </div>
+      <div>
+        <input
+          type="password"
+          class="input"
+          formControlName="password"
+          placeholder="Password"
+        />
+        <div id="password-constraints">
+          <small>At least one uppercase letter.</small>
+          <small>At least one lowercase letter.</small>
+          <small>At least one digit.</small>
+          <small>At least one special character from #?!&#64;$ %^&*-.</small>
+          <small>Minimum length of 8 characters.</small>
+        </div>
+      </div>
     </div>
-    <button (click)="onSubmit()">Add Admin</button>
+    <button
+      id="submit-btn"
+      [disabled]="addAdminForm.invalid"
+      (click)="onSubmit()"
+    >
+      Add Admin
+    </button>
   </form>
 </div>

@@ -24,7 +24,7 @@ export class AddBookModalComponent {
   @Input() showAddBookModal: boolean = false;
   addBookForm: FormGroup;
   selectedImage: File | null = null;
-  books: any;
+  books: any = [];
   categories: Category[] = [];
   authors: any = [];
 
@@ -63,9 +63,9 @@ export class AddBookModalComponent {
     if (this.addBookForm.valid) {
       const formData = this.addBookForm.value;
       formData.image = this.selectedImage;
+      debugger;
       this.bookService.uploadBookData(formData, 'books').subscribe(
         (res: any) => {
-          console.log('Upload successful:', res);
           this.getBooks();
         },
         (error: HttpErrorResponse) => {
@@ -80,7 +80,6 @@ export class AddBookModalComponent {
 
     if (file) {
       this.selectedImage = file;
-      console.log(file);
     }
   }
 

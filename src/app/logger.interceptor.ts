@@ -2,7 +2,6 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const loggerInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.method === 'POST' && authorizationNotRequired(req.url)) {
-    // Allow the request to go through without a token
     return next(req);
   } else {
     const token = localStorage.getItem('authorization');
@@ -12,7 +11,7 @@ export const loggerInterceptor: HttpInterceptorFn = (req, next) => {
           Authorization: `${token}`,
         },
       });
-      console.log('from the middleware',authReq);
+      console.log(authReq.body);
       return next(authReq);
     }
   }
@@ -20,5 +19,5 @@ export const loggerInterceptor: HttpInterceptorFn = (req, next) => {
 };
 
 function authorizationNotRequired(url: string): boolean {
-  return url.includes('/login');
+  return url.includes('/users') || url.includes('/login');
 }
