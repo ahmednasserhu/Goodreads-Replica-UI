@@ -10,7 +10,18 @@ export const onlyAdminGuard: CanActivateFn = (route, state) => {
 
   return userService.getUser().pipe(
     map((user) => {
-      return true;
+      if (user.isAdmin) {
+        return true;
+      }
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Only Admins Allowed',
+        timer: 2000,
+      });
+      router.navigateByUrl('/user');
+      return false;
     }),
     catchError(() => {
       Swal.fire({

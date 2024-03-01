@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { FormErrorMsgComponent } from './form-error-msg/form-error-msg.component';
 import { NavUserComponent } from './nav-user/nav-user.component';
 import { AllTableComponent } from './all-table/all-table.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -33,7 +33,7 @@ import { UserService } from './services/user.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges {
   isLogged: Boolean = false;
   isAdmin: Boolean = false;
 
@@ -42,6 +42,19 @@ export class AppComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.userService.getUser().subscribe(
+      (user) => {
+        this.isLogged = true;
+        this.isAdmin = user.isAdmin;
+      },
+      (error) => {
+        this.isLogged = false;
+        this.isAdmin = false;
+      }
+    );
+  }
+
+  ngOnChanges(): void {
     this.userService.getUser().subscribe(
       (user) => {
         this.isLogged = true;
