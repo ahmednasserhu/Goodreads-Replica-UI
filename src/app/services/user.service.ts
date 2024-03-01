@@ -20,4 +20,16 @@ export class UserService {
       }
     );
   }
+
+  rateBook(bookId: String, rating: Number) {
+    return this.http.patch(
+      `${this.apiUrl}`,
+      { bookId, rating },
+      {
+        headers: {
+          authorizationi: localStorage.getItem('authorization') || '',
+        },
+      }
+    );
+  }
 }

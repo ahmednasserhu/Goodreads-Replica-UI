@@ -5,40 +5,31 @@ import { DatePipe } from '@angular/common';
 import { Book } from '../interfaces/book';
 import { BooksService } from '../services/books.service';
 import { RatingModule } from 'primeng/rating';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { UserService } from '../services/user.service';
-import { catchError } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { AuthorPageBookCardComponent } from '../author-page-book-card/author-page-book-card.component';
 
 @Component({
   selector: 'app-author-page',
   standalone: true,
+  templateUrl: './author-page.component.html',
+  styleUrl: './author-page.component.css',
   imports: [
     DatePipe,
     FormsModule,
     RatingModule,
-    ReactiveFormsModule,
     RouterLink,
+    AuthorPageBookCardComponent,
   ],
-  templateUrl: './author-page.component.html',
-  styleUrl: './author-page.component.css',
 })
 export class AuthorPageComponent implements OnInit {
   @Input() authorId!: string;
-  allowedShelfs: string[] = ['read', 'currentlyReading', 'wantToRead'];
-
   author!: Author;
   authorBooks: Book[] = [];
 
   constructor(
     private authorService: UploadServiceService,
-    private booksService: BooksService,
-    private userService: UserService
+    private booksService: BooksService
   ) {}
 
   ngOnInit(): void {
@@ -49,22 +40,5 @@ export class AuthorPageComponent implements OnInit {
     this.booksService
       .getAuthorBooks(this.authorId)
       .subscribe((books) => (this.authorBooks = books));
-  }
-
-  addBookToShelf(event: any, bookId: String) {
-    const shelf = event.target.value;
-    if (!this.allowedShelfs.includes(shelf)) {
-      console.log('Invalid shelf name, no request sent to BackEnd');
-      return;
-    }
-    this.userService
-      .addBookToShelf(event.target.value, bookId.toString())
-      .pipe(
-        catchError((error) => {
-          console.log("Couldn't add book to shelf : ", error);
-          return error;
-        })
-      )
-      .subscribe();
   }
 }
