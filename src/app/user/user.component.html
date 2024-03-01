@@ -4,13 +4,10 @@
       <app-all-table></app-all-table>
     </div>
     <div *ngIf="selectedTab === 'read'">
-      <app-read-table></app-read-table>
     </div>
     <div *ngIf="selectedTab === 'currently-read'">
-      <app-currently-reading-table></app-currently-reading-table>
     </div>
     <div *ngIf="selectedTab === 'want-to-read'">
-      <app-want-to-read-table></app-want-to-read-table>
     </div>
 
     <button class="nav-link" (click)="switchTab('all')">All</button>
