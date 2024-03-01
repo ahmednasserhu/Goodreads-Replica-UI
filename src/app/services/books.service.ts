@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class BooksService {
   constructor(private http: HttpClient) {}
-  private apiUrl = `${environment.apiUrl}`;
+  private apiUrl = environment.apiUrl;
 
   uploadBookData(data: any, endPoint: string): Observable<any> {
     const formData = new FormData();

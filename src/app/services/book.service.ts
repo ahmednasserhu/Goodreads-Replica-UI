@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class BookService {
-  private apiUrl = `${environment.apiUrl}`;
+  private apiUrl = environment.apiUrl;
   constructor(private request: HttpClient) {}
   getBooks() {
     return this.request.get(`${this.apiUrl}/books`);
