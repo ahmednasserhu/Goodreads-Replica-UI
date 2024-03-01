@@ -1,0 +1,38 @@
+<div class="book">
+  <div class="info">
+    <img src="{{ apiUrl }}/{{ book.imageUrl }}" alt="book cover image" />
+    <div class="text">
+      <h2>
+        <a
+          [routerLink]="['/books', book.id]"
+          class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
+          >{{ book.name }}</a
+        >
+      </h2>
+      <p-rating
+        [(ngModel)]="book.rating"
+        [readonly]="true"
+        [cancel]="false"
+      ></p-rating>
+      {{ book.rating }}
+    </div>
+  </div>
+  <div class="user-input">
+    <select
+      class="form-select form-select-lg"
+      aria-label="Default select example"
+      (change)="addBookToShelf($event, book.id)"
+    >
+      <option selected>Select Shelf</option>
+      <option value="read">Read</option>
+      <option value="wantToRead">Want To Read</option>
+      <option value="currentlyReading">Currently Reading</option>
+    </select>
+    <p-rating
+      (onRate)="rateBook()"
+      [(ngModel)]="rate"
+      [cancel]="false"
+    ></p-rating>
+  </div>
+</div>
+<hr class="border border-1 opacity-75" />

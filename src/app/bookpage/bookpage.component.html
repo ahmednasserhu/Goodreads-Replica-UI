@@ -1,0 +1,83 @@
+<div class="container" style="height: 200px !important">
+  <div class="col-lg-8 border p-3 main-section bg-white">
+    <div class="row m-0">
+      <div class="col-lg-4 left-side-product-box pb-3">
+        <img [src]="apiUrl + '/' + book.imageUrl" class="border p-3" />
+        <div class="custom-rating">
+          <p-rating
+            [(ngModel)]="rate"
+            [cancel]="false"
+            (onRate)="sendRate()"
+          ></p-rating>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="right-side-pro-detail border p-3 m-0">
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="m-0 p-0 price-pro">{{ book.name }}</p>
+              <hr class="p-0 m-0" />
+            </div>
+            <div class="col-lg-12 pt-2">
+              <h5>book Detail</h5>
+              <span
+                >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris.</span
+              >
+              <hr class="m-0 pt-2 mt-2" />
+            </div>
+            <div class="col-lg-12">
+              <p class="tag-section">
+                <strong>Author : </strong>
+                <a [routerLink]="['/authors', book.author!.id]"
+                  >{{ book.author.firstName }} {{ book.author.lastName }}</a
+                >
+              </p>
+              <p class="tag-section">
+                <strong>Category : </strong
+                ><a [routerLink]="['/categories', book.category.id]">{{
+                  book.category.name
+                }}</a>
+              </p>
+            </div>
+            <div class="col-lg-12 mt-3">
+              <div class="row">
+                <div class="col-lg-12 pb-2">
+                  <button
+                    href="#"
+                    class="btn btn-brown w-100"
+                    style="
+                      background-color: #372213;
+                      color: #e6e4d8;
+                      font-size: 20px;
+                    "
+                  >
+                    <span
+                      class="p-float-label"
+                      style="
+                        background-color: #372213;
+                        color: #e6e4d8;
+                        font-size: 20px;
+                      "
+                    >
+                      <p-dropdown
+                        [options]="shelves"
+                        [(ngModel)]="selectedshelf"
+                        placeholder="Select Shelf"
+                        optionLabel="name"
+                        inputId="float-label"
+                      ></p-dropdown>
+                      <label for="float-label">Want To Read</label>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

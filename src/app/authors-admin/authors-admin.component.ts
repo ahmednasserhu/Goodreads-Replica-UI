@@ -18,6 +18,7 @@ import { HttpServiceService } from '../services/http-service.service';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthorService } from '../services/author.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-authors-admin',
@@ -39,6 +40,7 @@ export class AuthorsAdminComponent {
   Authors: any = [];
   isEditDialogVisible: boolean = true;
   selectedAuthorId!: number;
+  apiUrl: String = environment.apiUrl;
 
   constructor(
     private fb: FormBuilder,
@@ -108,11 +110,15 @@ export class AuthorsAdminComponent {
         );
     }
   }
-
   getAuthors() {
     this.http.getData('authors').subscribe(
       (res: any) => {
+        console.log('fetching data worked successfully');
         this.Authors = res;
+        console.log(
+          'this is the authors returned from the server',
+          this.Authors
+        );
       },
       (error: HttpErrorResponse) => {
         console.error('fetching data failed', error);

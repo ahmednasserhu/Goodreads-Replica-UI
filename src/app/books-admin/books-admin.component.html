@@ -19,10 +19,7 @@
       <tr *ngFor="let book of Books">
         <td>{{ book.id }}</td>
         <td class="photo-cell">
-          <img
-            [src]="'http://localhost:5000/' + book.imageUrl"
-            alt="Author Photo"
-          />
+          <img [src]="apiUrl + '/' + book.imageUrl" alt="Author Photo" />
         </td>
         <td>{{ book.name }}</td>
         <td>{{ book.category.id }}</td>

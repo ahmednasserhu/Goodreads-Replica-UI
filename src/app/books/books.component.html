@@ -1,0 +1,62 @@
+<div class="cards">
+  @for(book of books; track book.id){
+  <div class="card" style="background-color: #e6e4d8">
+    <div class="card__img">
+      <picture>
+        <source
+          media="(max-width: 320px)"
+          [srcset]="apiUrl + '/' + book.imageUrl"
+        />
+        <source
+          media="(min-width: 538px)"
+          [srcset]="apiUrl + '/' + book.imageUrl"
+        />
+        <img
+          [src]="apiUrl + '/' + book.imageUrl"
+          style="width: 100%; height: 100%"
+        />
+      </picture>
+    </div>
+    <div class="card__details">
+      <h3 for="cozyroom">{{ book.name }}</h3>
+      <div class="address">
+        <p class="tag-section">
+          <strong>Author : </strong
+          ><a [routerLink]="['/authors', book.author.id]"
+            >{{ book.author.firstName }} {{ book.author.lastName }}</a
+          >
+        </p>
+      </div>
+      <div class="price">
+        <div class="star">
+          <img
+            src="https://image.flaticon.com/icons/svg/291/291205.svg"
+            alt=""
+          />
+          <img
+            src="https://image.flaticon.com/icons/svg/291/291205.svg"
+            alt=""
+          />
+          <img
+            src="https://image.flaticon.com/icons/svg/291/291205.svg"
+            alt=""
+          />
+          <img
+            src="https://image.flaticon.com/icons/svg/291/291205.svg"
+            alt=""
+          />
+        </div>
+        <div class="price__l">
+          <p class="tag-section">
+            <strong>Category : </strong>
+            <a [routerLink]="['/categories', book.category.id]">
+              <span class="price__label">{{ book.category.name }}</span>
+            </a>
+          </p>
+        </div>
+      </div>
+      <button (click)="redirectToBook(book.id)">Read</button>
+    </div>
+  </div>
+  }
+</div>

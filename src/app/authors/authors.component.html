@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="authors">
+    @for(author of authors; track author.id){
+    <app-author-card [author]="author"></app-author-card>
+    }
+  </div>
+</div>

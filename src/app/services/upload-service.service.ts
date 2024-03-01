@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Author } from '../interfaces/author';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UploadServiceService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = `${environment.apiUrl}`;
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +23,6 @@ export class UploadServiceService {
 
     return this.http.post<any>(`${this.apiUrl}/${endPoint}`, formData);
   }
-
   updateData(data: any, endPoint: string): Observable<any> {
     const formData = new FormData();
     formData.append('firstName', data.firstName);

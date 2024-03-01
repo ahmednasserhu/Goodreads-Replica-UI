@@ -1,0 +1,15 @@
+<div class="conatiner">
+  <div class="profile">
+    <img src="{{ apiUrl }}/{{ author.imageUrl }}" alt="author image" />
+    <div class="info">
+      <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+      <h3>{{ author.dateOfBirth | date }}</h3>
+    </div>
+  </div>
+  <div class="books">
+    <h1>Author Books</h1>
+    @for(book of authorBooks; track book.id){
+    <app-author-page-book-card [book]="book"></app-author-page-book-card>
+    }
+  </div>
+</div>
