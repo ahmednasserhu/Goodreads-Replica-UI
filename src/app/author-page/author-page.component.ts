@@ -8,6 +8,7 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthorPageBookCardComponent } from '../author-page-book-card/author-page-book-card.component';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-author-page',
@@ -26,6 +27,7 @@ export class AuthorPageComponent implements OnInit {
   @Input() authorId!: string;
   author!: Author;
   authorBooks: Book[] = [];
+  apiUrl: String = environment.apiUrl;
 
   constructor(
     private authorService: UploadServiceService,

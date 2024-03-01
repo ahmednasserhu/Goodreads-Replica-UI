@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../interfaces/book';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
   constructor(private http: HttpClient) {}
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = `${environment.apiUrl}`;
 
   uploadBookData(data: any, endPoint: string): Observable<any> {
     const formData = new FormData();

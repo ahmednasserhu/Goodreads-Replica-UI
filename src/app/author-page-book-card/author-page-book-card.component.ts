@@ -7,6 +7,7 @@ import { UploadServiceService } from '../services/upload-service.service';
 import { UserService } from '../services/user.service';
 import { catchError } from 'rxjs';
 import { error } from 'console';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-author-page-book-card',
@@ -19,6 +20,7 @@ export class AuthorPageBookCardComponent {
   @Input() book!: Book;
   allowedShelfs: string[] = ['read', 'currentlyReading', 'wantToRead'];
   rate!: Number;
+  apiUrl: String = environment.apiUrl;
 
   constructor(private userService: UserService) {}
 

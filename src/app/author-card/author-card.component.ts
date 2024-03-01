@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Author } from '../interfaces/author';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-author-card',
@@ -12,6 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class AuthorCardComponent implements OnInit {
   @Input() author!: Author;
+  apiUrl: String = environment.apiUrl;
 
   ngOnInit(): void {
     console.log(this.author.dateOfBirth);
