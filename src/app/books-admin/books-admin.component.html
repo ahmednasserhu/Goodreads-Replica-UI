@@ -19,7 +19,7 @@
       <tr *ngFor="let book of Books">
         <td>{{ book.id }}</td>
         <td class="photo-cell">
-          <img [src]="'http://localhost:5000/' + book.imageUrl" alt="Author Photo" />
+          <img [src]="apiUrl + '/' + book.imageUrl" alt="Author Photo" />
         </td>
         <td>{{ book.name }}</td>
         <td>{{ book.category.id }}</td>
@@ -27,12 +27,18 @@
         <td class="actions">
           <a id="editIcon" role="button" (click)="editBook(content, book.id)">
             <span class="icon">
-              <fa-icon style="position: relative; top:35%; left:15px" [icon]="editIcon"></fa-icon>
+              <fa-icon
+                style="position: relative; top: 35%; left: 15px"
+                [icon]="editIcon"
+              ></fa-icon>
             </span>
           </a>
           <a id="deleteIcon" role="button" (click)="deleteBook(book.id)">
             <span class="icon">
-              <fa-icon style="position: relative; top:35%; right:15px" [icon]="deleteIcon"></fa-icon>
+              <fa-icon
+                style="position: relative; top: 35%; right: 15px"
+                [icon]="deleteIcon"
+              ></fa-icon>
             </span>
           </a>
         </td>
@@ -74,24 +80,20 @@
       <!-- Category Dropdown -->
       <div class="mb-3">
         <label for="category">Select Category</label>
-        <select
-          id="category"
-          class="form-control"
-          formControlName="category"
-        >
-          <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        <select id="category" class="form-control" formControlName="category">
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
         </select>
       </div>
 
       <!-- Author Dropdown -->
       <div class="mb-3">
         <label for="author">Select Author</label>
-        <select
-          id="author"
-          class="form-control"
-          formControlName="author"
-        >
-          <option *ngFor="let author of authors" [value]="author.id">{{ author.firstName + ' ' + author.lastName }}</option>
+        <select id="author" class="form-control" formControlName="author">
+          <option *ngFor="let author of authors" [value]="author.id">
+            {{ author.firstName + " " + author.lastName }}
+          </option>
         </select>
       </div>
 
@@ -120,6 +122,5 @@
     </form>
   </div>
 </ng-template>
-
 
 <!-- you can update photo name or category or author -->

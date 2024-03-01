@@ -1,0 +1,25 @@
+.profile {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 40vh;
+}
+
+.profile img {
+  margin-right: 2rem;
+}
+
+.profile .info {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+.books {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.books > h1 {
+  margin: 2rem;
+  text-align: center;
+}

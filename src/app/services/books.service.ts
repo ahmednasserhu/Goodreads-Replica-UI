@@ -2,20 +2,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../interfaces/book';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
   constructor(private http: HttpClient) {}
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = `${environment.apiUrl}`;
 
   uploadBookData(data: any, endPoint: string): Observable<any> {
     const formData = new FormData();
 
     formData.append('name', data.name);
-    formData.append('category', data.category);
-    formData.append('author', data.author);
+    formData.append('categoryId', data.category);
+    formData.append('authorId', data.author);
 
     formData.append('image', data.image);
     return this.http.post<any>(`${this.apiUrl}/${endPoint}`, formData);
@@ -47,5 +48,9 @@ export class BooksService {
 
   getCategoryBooks(id: String) {
     return this.http.get<Book[]>(`${this.apiUrl}/books?categoryId=${id}`);
+  }
+
+  getAuthorBooks(authorId: string | number) {
+    return this.http.get<Book[]>(`${this.apiUrl}/books?authorId=${authorId}`);
   }
 }

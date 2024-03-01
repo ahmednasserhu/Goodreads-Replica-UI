@@ -14,6 +14,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpServiceService } from '../services/http-service.service';
 import { CategoryService } from '../services/category.service';
 import { catchError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-books-admin',
@@ -36,6 +37,7 @@ export class BooksAdminComponent {
   Books: any = [];
   categories: any = [];
   authors: any = [];
+  apiUrl: String = environment.apiUrl;
 
   constructor(
     private fb: FormBuilder,
@@ -61,7 +63,7 @@ export class BooksAdminComponent {
       (res: any) => {
         console.log('fetching data worked successfully');
         this.Books = res;
-        console.log(this.Books[3].id)
+        console.log(this.Books[3].id);
       },
       (error: HttpErrorResponse) => {
         console.error('fetching data failed', error);

@@ -9,6 +9,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { AuthorPageComponent } from './author-page/author-page.component';
 import { BooksComponent } from './books/books.component';
 import { BookpageComponent } from './bookpage/bookpage.component';
 
@@ -45,22 +47,34 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+    title: 'Register',
   },
   {
     path: 'login',
     component: LoginComponent,
+    title: 'Login',
   },
   {
     path: 'user',
-    component: UserComponent
+    component: UserComponent,
   },
   {
     path: 'categories',
     component: CategoriesComponent,
+    title: 'Categories',
   },
   {
     path: 'categories/:categoryId',
     component: CategoryComponent,
+  },
+  {
+    path: 'authors',
+    component: AuthorsComponent,
+    title: 'Authors',
+  },
+  {
+    path: 'authors/:authorId',
+    component: AuthorPageComponent,
   },
   {
     path: 'books',

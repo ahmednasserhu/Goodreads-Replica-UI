@@ -11,7 +11,6 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { NotfoundComponent } from './notfound/notfound.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -31,7 +30,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-
 export class AppComponent {
   isLogged: Boolean = true;
   title = 'good-reads-replica';

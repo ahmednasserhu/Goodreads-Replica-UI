@@ -16,25 +16,31 @@ import { UploadServiceService } from '../services/upload-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpServiceService } from '../services/http-service.service';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-authors-admin',
   standalone: true,
   templateUrl: './authors-admin.component.html',
   styleUrl: './authors-admin.component.css',
-  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule,EditDialogComponent],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    EditDialogComponent,
+  ],
 })
 export class AuthorsAdminComponent {
   addAuthorForm: FormGroup;
   selectedImage: File | null = null;
   Authors: any = [];
   isEditDialogVisible: boolean = true;
-  
+  apiUrl: String = environment.apiUrl;
 
   constructor(
     private fb: FormBuilder,
     private uploadService: UploadServiceService,
-    private http: HttpServiceService,
+    private http: HttpServiceService
   ) {
     this.addAuthorForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -56,7 +62,6 @@ export class AuthorsAdminComponent {
       this.addAuthorForm.reset();
     }
   }
-  
 
   onSubmit() {
     if (this.addAuthorForm.valid) {
@@ -75,14 +80,18 @@ export class AuthorsAdminComponent {
   }
 
   getAuthors() {
-    this.http.getData('authors').subscribe((res: any) => {
-      console.log('fetching data worked successfully');
-      this.Authors = res;
-      console.log('this is the authors returned from the server',this.Authors);
-    },
-    (error: HttpErrorResponse) => {
-      console.error('fetching data failed', error);
-    }
+    this.http.getData('authors').subscribe(
+      (res: any) => {
+        console.log('fetching data worked successfully');
+        this.Authors = res;
+        console.log(
+          'this is the authors returned from the server',
+          this.Authors
+        );
+      },
+      (error: HttpErrorResponse) => {
+        console.error('fetching data failed', error);
+      }
     );
   }
 
