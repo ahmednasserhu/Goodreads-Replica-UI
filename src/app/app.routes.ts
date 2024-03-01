@@ -79,12 +79,12 @@ export const routes: Routes = [
   {
     path: 'books',
     component: BooksComponent,
-    title:'Books'
+    title: 'Books',
   },
   {
     path: 'books/:id',
     component: BookpageComponent,
-    title:'Book'
+    title: 'Book',
   },
   {
     path: '**',

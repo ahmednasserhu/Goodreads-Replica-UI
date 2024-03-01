@@ -1,14 +1,36 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  apiUrl: string = `${environment.apiUrl}/users`;
+  private apiUrl: string = `${environment.apiUrl}/users`;
+  isLoggedIn: boolean = false;
+  isAdminUser: boolean = false;
+  user: User | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getUser();
+  }
+
+  isLogged() {
+    this.getUser();
+    return this.isLoggedIn;
+  }
+
+  isAdmin() {
+    this.getUser();
+    return this.isAdminUser;
+  }
+
+  getUser() {
+    return this.http.get<User>(`${this.apiUrl}`, {
+      headers: { authorization: localStorage.getItem('authorization') || '' },
+    });
+  }
 
   addBookToShelf(shelf: string, bookId: string) {
     return this.http.post<any>(
