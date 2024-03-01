@@ -9,7 +9,7 @@ export class AddAdminService {
   private apiUrl = `${environment.apiUrl}`;
   constructor(private http: HttpClient) {}
 
-  addAdmin(data: any, endPoint: string) {
-    return this.http.post<any>(`${this.apiUrl}/${endPoint}`, data);
+  addAdmin(data: any) {
+    return this.http.post<any>(`${this.apiUrl}/admin`, data);
   }
 }

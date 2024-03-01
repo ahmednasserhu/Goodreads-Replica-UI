@@ -1,25 +1,36 @@
-.table-container {
+.container {
+  padding: 2rem 0rem;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 60%;
   transform: translate(-50%, -50%);
-  width: 800px; 
+  width: 800px;
 }
 
-.table {
-  border-collapse: collapse;
+h4 {
+  margin: 2rem 0rem 1rem;
 }
 
-.table th,
-.table td {
-  border: 1px solid #dddddd;
-  padding: 8px;
-  text-align: left;
-}
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
 
-.pagination-container {
-  position: absolute;
-  top: calc(50% + 120px);
-  left: 50%;
-  transform: translateX(-50%);
+  img{
+    height:100px;
+    width:100px;
+    border-radius: 50%;
+  }
+}
+th{
+  text-align: center;
+  background-color: #372213;
+  color: #E6E4D8;
+}
+td{
+  text-align: center;
+  color: #372213;
+}
+a{
+  color: #a84b08;
 }

@@ -5,9 +5,6 @@ import { LoginComponent } from './login/login.component';
 import { FormErrorMsgComponent } from './form-error-msg/form-error-msg.component';
 import { NavUserComponent } from './nav-user/nav-user.component';
 import { AllTableComponent } from './all-table/all-table.component';
-import { ReadTableComponent } from './read-table/read-table.component';
-import { CurrentlyReadingTableComponent } from './currently-reading-table/currently-reading-table.component';
-import { WantToReadTableComponent } from './want-to-read-table/want-to-read-table.component';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -21,9 +18,6 @@ import { UserService } from './services/user.service';
   standalone: true,
   imports: [
     AllTableComponent,
-    ReadTableComponent,
-    CurrentlyReadingTableComponent,
-    WantToReadTableComponent,
     RouterOutlet,
     HeaderComponent,
     CommonModule,

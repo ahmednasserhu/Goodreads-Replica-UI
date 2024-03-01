@@ -81,6 +81,13 @@
           required
           autocomplete="off"
         />
+        @if(editCategoryForm.controls['name'].touched){
+        <div id="usernameHelp" class="form-text text-danger">
+          @if(editCategoryForm.controls['name'].errors?.['required']){
+          <small style="display: block">This field is required</small>
+          }
+        </div>
+        }
       </div>
       <div class="modal-footer">
         <button
@@ -90,7 +97,14 @@
         >
           Close
         </button>
-        <button type="submit" class="btn btn-outline-primary">Update</button>
+        <button
+          type="submit"
+          [disabled]="editCategoryForm.invalid"
+          class="btn btn-outline-primary"
+          id="submit-btn"
+        >
+          Update
+        </button>
       </div>
     </form>
   </div>

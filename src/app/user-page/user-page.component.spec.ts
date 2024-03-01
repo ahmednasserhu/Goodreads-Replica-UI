@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReadTableComponent } from './read-table.component';
+import { UserPageComponent } from './user-page.component';
 
-describe('ReadTableComponent', () => {
-  let component: ReadTableComponent;
-  let fixture: ComponentFixture<ReadTableComponent>;
+describe('UserPageComponent', () => {
+  let component: UserPageComponent;
+  let fixture: ComponentFixture<UserPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReadTableComponent]
+      imports: [UserPageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ReadTableComponent);
+    fixture = TestBed.createComponent(UserPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

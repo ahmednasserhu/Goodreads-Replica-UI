@@ -1,21 +1,62 @@
-<div class="vertical-menu">
-  <nav class="nav flex-column">
-    <div *ngIf="selectedTab === 'all'">
-      <app-all-table></app-all-table>
-    </div>
-    <div *ngIf="selectedTab === 'read'">
-      <app-read-table></app-read-table>
-    </div>
-    <div *ngIf="selectedTab === 'currently-read'">
-      <app-currently-reading-table></app-currently-reading-table>
-    </div>
-    <div *ngIf="selectedTab === 'want-to-read'">
-      <app-want-to-read-table></app-want-to-read-table>
-    </div>
+<div class="container">
+    <div class="navigation">
+      <ul>
+        <li>
+          <a>
+            <span class="icon">
+              <fa-icon [icon]="websiteIcon"></fa-icon>
+            </span>
+            <span class="title">Good Reads</span>
+          </a>
+        </li>
 
-    <button class="nav-link" (click)="switchTab('all')">All</button>
-    <button class="nav-link" (click)="switchTab('read')">Read</button>
-    <button class="nav-link" (click)="switchTab('currently-read')">Currently Reading</button>
-    <button class="nav-link" (click)="switchTab('want-to-read')">Want to Read</button>
-  </nav>
-</div>
+        <li>
+          <a
+            role="button"
+            (click)="onButtonClicked('All')"
+            [routerLink]="'all'"
+          >
+            <span class="icon">
+              <fa-icon [icon]="categoryIcon"></fa-icon>
+            </span>
+            <span class="title">All</span>
+          </a>
+        </li>
+
+        <li>
+          <a (click)="onButtonClicked('Read')" [routerLink]="'read'">
+            <span class="icon">
+              <fa-icon [icon]="booksIcon"></fa-icon>
+            </span>
+            <span class="title">Read</span>
+          </a>
+        </li>
+
+        <li>
+          <a (click)="onButtonClicked('currentlyReading')" role="button" [routerLink]="'currentread'">
+            <span class="icon">
+              <fa-icon [icon]="booksIcon"></fa-icon>
+            </span>
+            <span class="title">currently Reading</span>
+          </a>
+        </li>
+
+        <li>
+          <a (click)="onButtonClicked('wantToRead')" role="button" [routerLink]="'wantread'">
+            <span class="icon">
+              <fa-icon [icon]="booksIcon"></fa-icon>
+            </span>
+            <span class="title"> Want To Read</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="main" [class.active]="isNavigationActive">
+    <div class="topbar">
+      <div class="toggle" (click)="toggleNavigation()">
+        <fa-icon [icon]="toggleIcon"></fa-icon>
+      </div>
+    </div>
+  </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -16,6 +16,8 @@ import { UploadServiceService } from '../services/upload-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpServiceService } from '../services/http-service.service';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthorService } from '../services/author.service';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -28,21 +30,33 @@ import { environment } from '../../environments/environment';
     FontAwesomeModule,
     ReactiveFormsModule,
     EditDialogComponent,
+    NgbModule,
   ],
 })
 export class AuthorsAdminComponent {
   addAuthorForm: FormGroup;
+  editAuthorForm: FormGroup;
   selectedImage: File | null = null;
   Authors: any = [];
   isEditDialogVisible: boolean = true;
+  selectedAuthorId!: number;
   apiUrl: String = environment.apiUrl;
 
   constructor(
     private fb: FormBuilder,
     private uploadService: UploadServiceService,
-    private http: HttpServiceService
+    private http: HttpServiceService,
+    private modalService: NgbModal,
+    private authorService: AuthorService
   ) {
     this.addAuthorForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      image: [null],
+    });
+
+    this.editAuthorForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
@@ -79,6 +93,23 @@ export class AuthorsAdminComponent {
     }
   }
 
+  editAuthorSubmit() {
+    if (this.editAuthorForm.valid) {
+      const formData = this.editAuthorForm.value;
+      formData.image = this.selectedImage;
+      this.uploadService
+        .updateData(formData, `authors/${this.selectedAuthorId}`)
+        .subscribe(
+          (res: any) => {
+            console.log('Update successful:', res);
+            this.getAuthors();
+          },
+          (error: HttpErrorResponse) => {
+            console.error('Upload failed:', error);
+          }
+        );
+    }
+  }
   getAuthors() {
     this.http.getData('authors').subscribe(
       (res: any) => {
@@ -103,14 +134,23 @@ export class AuthorsAdminComponent {
       console.log(file);
     }
   }
-  editAuthor(author: any) {
-    this.isEditDialogVisible = true;
-    console.log(this.isEditDialogVisible);
+
+  editAuthor(content: TemplateRef<any>, authorId: number) {
+    this.selectedAuthorId = authorId;
+    console.log(this.selectedAuthorId);
+    this.modalService.open(content, { centered: true });
+    this.editAuthorForm.reset();
   }
 
-  deleteAuthor(authorId: number) {
-    // Implement your delete functionality here
-    console.log('Delete author with ID:', authorId);
+  deleteAuthor(bookId: number) {
+    this.authorService.deleteAuthor(bookId).subscribe(
+      (res) => {
+        this.getAuthors();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   editIcon = faPencil;

@@ -2,29 +2,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { User } from '../interfaces/user';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Book } from '../interfaces/book';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private apiUrl: string = `${environment.apiUrl}/users`;
-  isLoggedIn: boolean = false;
-  isAdminUser: boolean = false;
-  user: User | null = null;
+  private selectedBooksSubject: BehaviorSubject<Book[]> = new BehaviorSubject<
+    Book[]
+  >([]);
+  selectedBooks$: Observable<Book[]> = this.selectedBooksSubject.asObservable();
 
-  constructor(private http: HttpClient) {
-    this.getUser();
-  }
-
-  isLogged() {
-    this.getUser();
-    return this.isLoggedIn;
-  }
-
-  isAdmin() {
-    this.getUser();
-    return this.isAdminUser;
-  }
+  constructor(private http: HttpClient) {}
 
   getUser() {
     return this.http.get<User>(`${this.apiUrl}`, {
@@ -54,5 +45,11 @@ export class UserService {
         },
       }
     );
+  }
+  getBooksFromShelf(shelf: string) {
+    return this.http.get<any>(`${this.apiUrl}/library?shelf=${shelf}`);
+  }
+  sendSelectedBooks(books: Book[]) {
+    this.selectedBooksSubject.next(books);
   }
 }
