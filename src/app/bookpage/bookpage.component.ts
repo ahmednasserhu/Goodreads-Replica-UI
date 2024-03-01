@@ -31,7 +31,7 @@ export class BookpageComponent {
     bookId: String;
   };
   shelves = ['read', 'currentlyReading', 'wantToRead'];
-
+  apiUrl: string = environment.apiUrl;
   constructor(
     private userService: UserService,
     private bookRequest: BookService,

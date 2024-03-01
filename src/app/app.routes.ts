@@ -13,6 +13,8 @@ import { AuthorsComponent } from './authors/authors.component';
 import { AuthorPageComponent } from './author-page/author-page.component';
 import { BooksComponent } from './books/books.component';
 import { BookpageComponent } from './bookpage/bookpage.component';
+import { AllTableComponent } from './all-table/all-table.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 export const routes: Routes = [
   {
@@ -56,7 +58,26 @@ export const routes: Routes = [
   },
   {
     path: 'user',
-    component: UserComponent,
+    component: UserPageComponent,
+    children:
+      [
+        {
+      path: 'read',
+      component: UserPageComponent,
+        },
+        {
+          path: 'all',
+          component: UserPageComponent,
+        },
+        {
+          path: 'wantread',
+          component: UserPageComponent,
+        },
+        {
+          path: 'currentread',
+          component: UserPageComponent,
+        },
+      ]
   },
   {
     path: 'categories',
@@ -79,12 +100,12 @@ export const routes: Routes = [
   {
     path: 'books',
     component: BooksComponent,
-    title:'Books'
+    title: 'Books',
   },
   {
     path: 'books/:id',
     component: BookpageComponent,
-    title:'Book'
+    title: 'Book',
   },
   {
     path: '**',

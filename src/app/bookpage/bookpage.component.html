@@ -36,12 +36,12 @@
               <p class="tag-section">
                 <strong>Author : </strong>
                 <a [routerLink]="['/authors', book.author!.id]"
-                  >{{ book.author.firstName }} {{ book.author.lastName }}</a
-                >
+                  style="text-decoration: none;">
+                  {{ book.author.firstName }} {{ book.author.lastName }}</a>
               </p>
               <p class="tag-section">
                 <strong>Category : </strong
-                ><a [routerLink]="['/categories', book.category.id]">{{
+                ><a [routerLink]="['/categories', book.category.id]" style="text-decoration: none;">{{
                   book.category.name
                 }}</a>
               </p>

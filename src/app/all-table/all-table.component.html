@@ -1,83 +1,45 @@
 <div class="container">
-<div class="table-container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Cover</th>
-        <th scope="col">Name</th>
-        <th scope="col">Author</th>
-        <th scope="col">Avg Rate</th>
-        <th scope="col">Rating</th>
-        <th scope="col">Shelve</th>
-      </tr>
-    </thead>
-    <tbody>
-    
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>   <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>   <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>   <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="pagination-container">
-  <app-pagination></app-pagination>
-</div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-image">
+        <thead>
+          <tr>
+            <th scope="col">Cover</th>
+            <th scope="col">Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Avg Rate</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Shelve</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(book of bookByShelf;track book.id ){
+          <tr>
+            <td class="w-25">
+              <img [src]="apiUrl + '/' + book.book.imageUrl" class="img-fluid img-thumbnail" alt="Sheep">
+            </td>
+            <td><a [routerLink]="['/books', book.book.id]" style="text-decoration: none;">{{book.book.name}}</a></td>
+            <td><a [routerLink]="['/authors', book.book.author]" style="text-decoration: none;">{{book.book.author}}</a>
+            </td>
+            <td> <p-rating [(ngModel)]="book.book.avgRating.rateValue" [readonly]="true" [cancel]="false"></p-rating></td>
+            <td><p-rating
+            [(ngModel)]="rate"
+            [cancel]="false"
+            (onRate)="sendRate(book.book.id)"></p-rating></td>
+            <td style="width:600px ;"><select
+          class="form-select form-select-lg"
+          aria-label="Default select example"
+          (change)="addBookToShelf($event, book.id)"
+        style="width:200px ;" >
+          <option selected disabled>{{book.shelf}}</option>
+          <option value="read">Read</option>
+          <option value="wantToRead">Want To Read</option>
+          <option value="currentlyReading">Currently Reading</option>
+        </select></td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
