@@ -32,7 +32,7 @@ import { Category } from '../interfaces/category';
   styleUrl: './categories-admin.component.css',
 })
 export class CategoriesAdminComponent {
-  categories: Category[] = [];
+  categories: any = [];
   showAddCategoryModal!: boolean;
   content!: TemplateRef<any>;
   editCategoryForm!: FormGroup;
@@ -69,7 +69,23 @@ export class CategoriesAdminComponent {
           return error;
         })
       )
-      .subscribe();
+      .subscribe((res) => {
+        this.getCategories();
+      });
+  }
+
+  getCategories() {
+    this.categoryService
+      .getCategories()
+      .pipe(
+        catchError((error) => {
+          console.log('Retrieve categories failed : ', error);
+          return error;
+        })
+      )
+      .subscribe((categories) => {
+        this.categories = categories;
+      });
   }
 
   togglePopup() {

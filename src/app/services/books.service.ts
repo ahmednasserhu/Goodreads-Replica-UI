@@ -25,15 +25,16 @@ export class BooksService {
     return this.http.get<any>(`${this.apiUrl}/${endPoint}`);
   }
 
-  updateBookData(data: any, endPoint: string): Observable<any> {
+  updateBookData(data: any, bookId: number): Observable<any> {
     const formData = new FormData();
 
     formData.append('name', data.name);
-    formData.append('category', data.category);
-    formData.append('author', data.author);
+    formData.append('categoryId', data.categoryId);
+    formData.append('authorId', data.authorId);
 
     formData.append('image', data.image);
-    return this.http.patch<any>(`${this.apiUrl}/${endPoint}`, formData);
+    console.log(formData);
+    return this.http.patch<any>(`${this.apiUrl}/books/${bookId}`, formData);
   }
 
   deleteBook(endPoint: string, categoryId: number): Observable<any> {

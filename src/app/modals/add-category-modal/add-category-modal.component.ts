@@ -18,6 +18,7 @@ import { catchError } from 'rxjs';
 })
 export class AddCategoryModalComponent {
   @Input() showAddCategoryModal: boolean = false;
+  categories: any = [];
   addCategoryForm: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -39,7 +40,9 @@ export class AddCategoryModalComponent {
             return error;
           })
         )
-        .subscribe();
+        .subscribe((res) => {
+          this.getCategories();
+        });
     }
   }
 
@@ -52,5 +55,19 @@ export class AddCategoryModalComponent {
     if (!popup?.classList.contains('active')) {
       this.addCategoryForm.reset();
     }
+  }
+
+  getCategories() {
+    this.categoryService
+      .getCategories()
+      .pipe(
+        catchError((error) => {
+          console.log('Retrieve categories failed : ', error);
+          return error;
+        })
+      )
+      .subscribe((categories) => {
+        this.categories = categories;
+      });
   }
 }

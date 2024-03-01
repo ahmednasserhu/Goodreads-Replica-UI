@@ -75,4 +75,14 @@
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.add-btn:hover {
+  transform: scale(1.08);
+  background-color: #1f4058;
+}
+
+.add-btn:disabled {
+  cursor: not-allowed;
 }

@@ -76,3 +76,7 @@ th {
   text-align: center;
   height: 50px;
 }
+
+#submit-btn:disabled {
+  cursor: not-allowed;
+}

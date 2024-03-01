@@ -1,14 +1,31 @@
 <div class="popup">
-    <div class="close-btn" (click)="togglePopup()">&times;</div>
-    <form class="from" [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
-        <h2 id="header">Add Category</h2>
-        <div class="form-element">
-            <label class="label-style" for="name">Category Name</label>
-            <input class="input-style" type="text" name="name" id="name" placeholder="please enter the Category Name" formControlName="name" required
-            autocomplete="off">
-        </div>
-        <div class="form-element">
-            <button class="add-btn">Add a Category</button>
-        </div>
-      </form>
+  <div class="close-btn" (click)="togglePopup()">&times;</div>
+  <form class="from" [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
+    <h2 id="header">Add Category</h2>
+    <div class="form-element">
+      <label class="label-style" for="name">Category Name</label>
+      <input
+        class="input-style"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="please enter the Category Name"
+        formControlName="name"
+        required
+        autocomplete="off"
+      />
+      @if(addCategoryForm.controls['name'].touched){
+      <div id="usernameHelp" class="form-text text-danger">
+        @if(addCategoryForm.controls['name'].errors?.['required']){
+        <small style="display: block">This field is required</small>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-element">
+      <button class="add-btn" [disabled]="addCategoryForm.invalid">
+        Add a Category
+      </button>
+    </div>
+  </form>
 </div>

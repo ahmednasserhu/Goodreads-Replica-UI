@@ -1,11 +1,10 @@
 :host {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #e6e4d8;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #e6e4d8;
+}
 
 .form-box {
   max-width: 300px;
@@ -88,4 +87,23 @@
 
 .form button:hover {
   background-color: #005ce6;
+}
+
+#password-constraints {
+  margin-top: 5px;
+  text-align: center;
+  white-space: nowrap;
+  display: flexbox;
+  justify-content: center;
+}
+
+#password-constraints small {
+  color: grey;
+  display: block;
+  font-weight: bolder;
+  font-size: x-small;
+}
+
+#submit-btn:disabled {
+  cursor: not-allowed;
 }

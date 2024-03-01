@@ -19,20 +19,33 @@
       <tr *ngFor="let author of Authors">
         <td>{{ author.id }}</td>
         <td class="photo-cell">
-          <img [src]="'http://localhost:5000/' + author.imageUrl" alt="Author Photo" />
+          <img
+            [src]="'http://localhost:5000/' + author.imageUrl"
+            alt="Author Photo"
+          />
         </td>
         <td>{{ author.firstName }}</td>
         <td>{{ author.lastName }}</td>
         <td>{{ author.dateOfBirth | date }}</td>
         <td class="actions">
-          <a id="editIcon" role="button" (click)="editAuthor(author)">
+          <a
+            id="editIcon"
+            role="button"
+            (click)="editAuthor(content, author.id)"
+          >
             <span class="icon">
-              <fa-icon style="position: relative; top:35%; left:15px" [icon]="editIcon"></fa-icon>
+              <fa-icon
+                style="position: relative; top: 35%; left: 15px"
+                [icon]="editIcon"
+              ></fa-icon>
             </span>
           </a>
           <a id="deleteIcon" role="button" (click)="deleteAuthor(author.id)">
             <span class="icon">
-              <fa-icon style="position: relative; top:35%; right:15px" [icon]="deleteIcon"></fa-icon>
+              <fa-icon
+                style="position: relative; top: 35%; right: 15px"
+                [icon]="deleteIcon"
+              ></fa-icon>
             </span>
           </a>
         </td>
@@ -41,34 +54,156 @@
   </table>
 </div>
 
-    <!-- <app-edit-dialog></app-edit-dialog> -->
-
-<!-- Button trigger modal -->
-<!-- -->
-
-
 <div class="popup">
-    <div class="close-btn" (click)="togglePopup()">&times;</div>
-    <form class="from" [formGroup]="addAuthorForm" (ngSubmit)="onSubmit()">
-        <h2 id="header">Add Author</h2>
-        <div class="form-element">
-            <label class="label-style" for="firstName">First Name</label>
-            <input class="input-style" type="text" name="firstName" id="firstName" placeholder="please enter your firstName" formControlName="firstName" required>
-        </div>
-        <div class="form-element">
-            <label class="label-style" for="lastName">Last Name</label>
-            <input class="input-style" type="text" name="lastName" id="lastName" placeholder="please enter your lastName" formControlName="lastName" required>
-        </div>
-        <div class="form-element">
-            <label class="label-style" for="dateOfBirth">Date Of Birth</label>
-            <input class="input-style" type="date" name="dateOfBirth" id="dateOfBirth" formControlName="dateOfBirth" required>
-        </div>
-        <div class="form-element">
-            <label class="label-style" for="image">Image</label>
-            <input class="input-style" type="file" (change)="onImagePicked($event)">
-        </div>
-        <div class="form-element">
-            <button class="add-btn">Add an Author</button>
-        </div>
-      </form>
+  <div class="close-btn" (click)="togglePopup()">&times;</div>
+  <form class="from" [formGroup]="addAuthorForm" (ngSubmit)="onSubmit()">
+    <h2 id="header">Add Author</h2>
+    <div class="form-element">
+      <label class="label-style" for="firstName">First Name</label>
+      <input
+        class="input-style"
+        type="text"
+        name="firstName"
+        id="firstName"
+        placeholder="please enter your firstName"
+        formControlName="firstName"
+        required
+      />
+    </div>
+    <div class="form-element">
+      <label class="label-style" for="lastName">Last Name</label>
+      <input
+        class="input-style"
+        type="text"
+        name="lastName"
+        id="lastName"
+        placeholder="please enter your lastName"
+        formControlName="lastName"
+        required
+      />
+    </div>
+    <div class="form-element">
+      <label class="label-style" for="dateOfBirth">Date Of Birth</label>
+      <input
+        class="input-style"
+        type="date"
+        name="dateOfBirth"
+        id="dateOfBirth"
+        formControlName="dateOfBirth"
+        required
+      />
+    </div>
+    <div class="form-element">
+      <label class="label-style" for="image">Image</label>
+      <input class="input-style" type="file" (change)="onImagePicked($event)" />
+    </div>
+    <div class="form-element">
+      <button class="add-btn">Add an Author</button>
+    </div>
+  </form>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Author</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editAuthorForm" (ngSubmit)="editAuthorSubmit()">
+      <!-- First Name -->
+      <div class="mb-3">
+        <label for="firstName">Enter the First Name</label>
+        <input
+          id="firstName"
+          class="form-control"
+          type="text"
+          name="firstName"
+          formControlName="firstName"
+          autocomplete="off"
+        />
+        @if(editAuthorForm.controls['firstName'].touched){
+        <div id="usernameHelp" class="form-text text-danger">
+          @if(editAuthorForm.controls['firstName'].errors?.['required']){
+          <small style="display: block">This field is required</small>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Last Name -->
+      <div class="mb-3">
+        <label for="lastName">Enter the Last Name</label>
+        <input
+          id="lastName"
+          class="form-control"
+          type="text"
+          name="lastName"
+          formControlName="lastName"
+          autocomplete="off"
+        />
+        @if(editAuthorForm.controls['lastName'].touched){
+        <div id="usernameHelp" class="form-text text-danger">
+          @if(editAuthorForm.controls['lastName'].errors?.['required']){
+          <small style="display: block">This field is required</small>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="mb-3">
+        <label for="dateOfBirth">Enter the Date of Birth</label>
+        <input
+          id="dateOfBirth"
+          class="form-control"
+          type="date"
+          name="dateOfBirth"
+          formControlName="dateOfBirth"
+          autocomplete="off"
+        />
+        @if(editAuthorForm.controls['dateOfBirth'].touched){
+        <div id="usernameHelp" class="form-text text-danger">
+          @if(editAuthorForm.controls['dateOfBirth'].errors?.['required']){
+          <small style="display: block">This field is required</small>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Image Input -->
+      <div class="mb-3">
+        <label for="image">Select Image</label>
+        <input
+          id="image"
+          class="form-control"
+          formControlName="image"
+          type="file"
+          (change)="onImagePicked($event)"
+        />
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="modal.close('Cancel click')"
+        >
+          Close
+        </button>
+        <!-- Disable the Update button if the form is invalid -->
+        <button
+          type="submit"
+          [disabled]="editAuthorForm.invalid"
+          class="btn btn-outline-primary"
+        >
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
